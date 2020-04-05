@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+    <script src="script.js"></script>
+</head>
+
+
+<body>
+<!--header row-->
+<div class="row no-gutters mx-4 my-4">
+
+    <div class="col-10">
+        <h2 class=" d-flex align-items-center justify-content-start">D2020 Undergraduate Symposium</h2>
+    </div>
+    <div class="col-2">
+        <div class="dropdown">
+            <label for="filter-dropdown">Filter By:</label>
+            <select class="custom-select" id="filter-dropdown" onchange="sort_data(this)">
+                <option selected disabled>Default</option>
+                <option value="title">Project Title</option>
+                <option value="advisor">Advisor Name</option>
+                <option value="random">Random</option>
+            </select>
+        </div>
+    </div>
+</div>
+<!--title of page-->
+<div class="row align-items-center justify-content-center no-gutters my-3">
+    <h3>Sample Page of Submissions</h3>
+</div>
+
+
+<!-- Content generated here-->
+<!-- Footer generated here -->
+
+
+<style>
+    iframe {
+        width: 100%;
+        height: 100%
+    }
+</style>
+</body>
+</html>
+
+<!--template code minus some formatting-->
+<!--<div class="row">-->
+<!--<div class="col-md-4">-->
+<!--<iframe src="https://www.youtube.com/embed/qm1tQsm3s44" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>-->
+<!--</div>-->
+<!--<div class="col-md-4">-->
+<!--<div class="row">-->
+<!--<h5>Sample</h5>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<p><b>Students:</b> Sample<br/>-->
+<!--<b>Advisors:</b> Sample-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<p>This course will focus on continuous nonlinear optimization. We will cover selected chapters from the text dealing with both unconstrained and constrained optimization. Most of the optimization algorithms covered will be basic line search methods, including Newton’s Method and the method of steepest descent. We will also cover least squares fits, Lagrange multipliers, convexity, convex optimization, and the Karush-Kuhn-Tucker (KKT) conditions. If time permits, we may cover trust-region methods, conjugate gradient methods, or spline fitting. A project will be assigned.</p>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-md-4">-->
+<!--<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQtHkGP3xGocEViYN0vmLfw8j_xXtVjAO98h2wJ-rwH2EHcM5pv3kFNCKk7WPQQfEfKV9DDltWnP6bC/embed?start=false&amp;loop=false&amp;delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--&lt;!&ndash; wp:columns &ndash;&gt;-->
+<!--<div class="wp-block-columns">&lt;!&ndash; wp:column &ndash;&gt;-->
+<!--<div class="wp-block-column">&lt;!&ndash; wp:core-embed/youtube {"url":"https://youtu.be/qm1tQsm3s44","type":"video","providerNameSlug":"youtube","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} &ndash;&gt;-->
+<!--<figure class="wp-block-embed-youtube wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">-->
+<!--https://youtu.be/qm1tQsm3s44-->
+<!--</div></figure>-->
+<!--&lt;!&ndash; /wp:core-embed/youtube &ndash;&gt;</div>-->
+<!--&lt;!&ndash; /wp:column &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:column &ndash;&gt;-->
+<!--<div class="wp-block-column">&lt;!&ndash; wp:paragraph {"fontSize":"normal"} &ndash;&gt;-->
+<!--<p class="has-normal-font-size"><strong> MA 4235: Mathematical Optimization D Term 2020</strong><br>Prof. S. L. Weekes<br><br></p>-->
+<!--&lt;!&ndash; /wp:paragraph &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:paragraph {"customFontSize":17} &ndash;&gt;-->
+<!--<p style="font-size:17px">This course will focus on continuous nonlinear optimization. We will cover selected chapters from the text dealing with both unconstrained and constrained optimization. Most of the optimization algorithms covered will be basic line search methods, including Newton’s Method and the method of steepest descent. We will also cover least squares fits, Lagrange multipliers, convexity, convex optimization, and the Karush-Kuhn-Tucker (KKT) conditions. If time permits, we may cover trust-region methods, conjugate gradient methods, or spline fitting. A project will be assigned.</p>-->
+<!--&lt;!&ndash; /wp:paragraph &ndash;&gt;</div>-->
+<!--&lt;!&ndash; /wp:column &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:column &ndash;&gt;-->
+<!--<div class="wp-block-column">-->
+<!--<div class="wp-block-column"><figure><iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQtHkGP3xGocEViYN0vmLfw8j_xXtVjAO98h2wJ-rwH2EHcM5pv3kFNCKk7WPQQfEfKV9DDltWnP6bC/embed?start=false&amp;loop=false&amp;delayms=3000" frameborder="0"  allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe></figure> </div>-->
+
+
+<!--</div>-->
+<!--&lt;!&ndash; /wp:column &ndash;&gt;</div>-->
+<!--&lt;!&ndash; /wp:columns &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:columns &ndash;&gt;-->
+<!--<div class="wp-block-columns">&lt;!&ndash; wp:column &ndash;&gt;-->
+<!--<div class="wp-block-column">&lt;!&ndash; wp:core-embed/youtube {"url":"https://youtu.be/1Csmp_KWMjY","type":"video","providerNameSlug":"youtube","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} &ndash;&gt;-->
+<!--<figure class="wp-block-embed-youtube wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">-->
+<!--https://youtu.be/1Csmp_KWMjY-->
+<!--</div></figure>-->
+<!--&lt;!&ndash; /wp:core-embed/youtube &ndash;&gt;</div>-->
+<!--&lt;!&ndash; /wp:column &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:column &ndash;&gt;-->
+<!--<div class="wp-block-column">&lt;!&ndash; wp:paragraph {"fontSize":"normal"} &ndash;&gt;-->
+<!--<p class="has-normal-font-size"><strong>The Preparation for Careers in Industrial Mathematics and Statistics (PIC Math) Program</strong><br>Suzanne L. Weekes, Michael Dorff<br>Advisor: Suzanne L. Weekes <br><br></p>-->
+<!--&lt;!&ndash; /wp:paragraph &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:paragraph &ndash;&gt;-->
+<!--<p></p>-->
+<!--&lt;!&ndash; /wp:paragraph &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:paragraph {"customFontSize":17} &ndash;&gt;-->
+<!--<p style="font-size:17px">PIC Math is a program to prepare undergraduate students in the mathematics and statistics to succeed in careers in business, industry, and government. Funded by a $2 million NSF grant and now a $1.4M one, this program strives to (a) increase awareness among faculty and students about non-academic career options, (b) provide undergraduate research experience using problems from industry, and (c) prepare students for industrial careers. The program includes a 3-day faculty summer training workshop, a spring semester course in which students learn skills and work on research problems from industry, and an end-of-program research conference at which the students present. For the semester course, we have developed a set of educational and informative videos and prepared materials for the course such as sample syllabi, set of sample research problems from industry, sample student solutions to industrial research problems, and sample videos of student presenting their research.</p>-->
+<!--&lt;!&ndash; /wp:paragraph &ndash;&gt;</div>-->
+<!--&lt;!&ndash; /wp:column &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:column &ndash;&gt;-->
+<!--<div class="wp-block-column">-->
+<!--<figure>-->
+<!--<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQsmq8d1qD-RwOGT6CnfTw-GGoclGRUEdwy0FBFrhe5ki4llvHzuOZg7zMIV7wbXkZk6kT-uF3cB2Fx/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>-->
+<!--</figure>-->
+<!--</div>-->
+<!--&lt;!&ndash; /wp:column &ndash;&gt;</div>-->
+<!--&lt;!&ndash; /wp:columns &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:columns &ndash;&gt;-->
+<!--<div class="wp-block-columns">&lt;!&ndash; wp:column &ndash;&gt;-->
+<!--<div class="wp-block-column">&lt;!&ndash; wp:core-embed/youtube {"url":"https://youtu.be/ISvTdIRnfpQ","type":"video","providerNameSlug":"youtube","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} &ndash;&gt;-->
+<!--<figure class="wp-block-embed-youtube wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">-->
+<!--https://youtu.be/ISvTdIRnfpQ-->
+<!--</div></figure>-->
+<!--&lt;!&ndash; /wp:core-embed/youtube &ndash;&gt;</div>-->
+<!--&lt;!&ndash; /wp:column &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:column &ndash;&gt;-->
+<!--<div class="wp-block-column">&lt;!&ndash; wp:paragraph {"fontSize":"normal"} &ndash;&gt;-->
+<!--<p class="has-normal-font-size"><strong>PracticePoint</strong><br>Gregory Fisher<br><br></p>-->
+<!--&lt;!&ndash; /wp:paragraph &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:paragraph {"customFontSize":17} &ndash;&gt;-->
+<!--<p style="font-size:17px">PracticePoint is WPI’s membership-based development and testing facility. The goal of this alliance space is to advance healthcare technologies and launch better medical cyber-physical systems, through collaboration across the spectrum of product development and implementation. PracticePoint is a resource for designing, prototyping, and evaluating various medical devices by an associated consortium of academics, industry, healthcare professionals and users/patients. This includes a wide spectrum of systems, from rehabilitative devices to surgical robotics. The facility comprises point-of-practice clinical care scenarios including: a fully instrumented living space, a state of the art motion capture lab, a 2-bed modular patient care suite, MRI imaging, and a fully functional operating room co-located with advanced manufacturing capabilities. Our advanced manufacturing rooms include a wide array of 3D printing, CNC manufacturing, and electronics assembly and test capabilities.</p>-->
+<!--&lt;!&ndash; /wp:paragraph &ndash;&gt;</div>-->
+<!--&lt;!&ndash; /wp:column &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:column &ndash;&gt;-->
+<!--<div class="wp-block-column">-->
+<!--<figure>-->
+<!--<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRZfkeyG3-HieF_P40t6xt223Nc2aqf9OelfXhwc0WQs3EUgq_f1Fu7VRzVxQ312k7DdaU-8Sy68urz/embed?start=false&loop=false&delayms=3000" frameborder="0" width="1280" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>-->
+<!--</figure>-->
+<!--</div>-->
+<!--&lt;!&ndash; /wp:column &ndash;&gt;</div>-->
+<!--&lt;!&ndash; /wp:columns &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:columns &ndash;&gt;-->
+<!--<div class="wp-block-columns">&lt;!&ndash; wp:column &ndash;&gt;-->
+<!--<div class="wp-block-column"></div>-->
+<!--&lt;!&ndash; /wp:column &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:column &ndash;&gt;-->
+<!--<div class="wp-block-column"></div>-->
+<!--&lt;!&ndash; /wp:column &ndash;&gt;-->
+
+<!--&lt;!&ndash; wp:column &ndash;&gt;-->
+<!--<div class="wp-block-column"></div>-->
+<!--&lt;!&ndash; /wp:column &ndash;&gt;</div>-->
+<!--&lt;!&ndash; /wp:columns &ndash;&gt;-->
