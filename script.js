@@ -20,19 +20,21 @@ function load_projects() {
             let new_row = document.createElement('div');
             new_row.classList.add('row');
             new_row.classList.add('no-gutters');
-            new_row.classList.add('my-3');
+            new_row.classList.add('py-5');
+            new_row.style.borderBottom = "1px solid grey";
             // new_row.classList.add('mx-2');
 
             let col_1 = document.createElement('div');
-            col_1.classList.add('col-md-4');
-            col_1.innerHTML = " <iframe src='" + String(datum.Video) + "' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>"
+            col_1.classList.add('col-md-3');
+            col_1.innerHTML = " <iframe src='" + datum.Video +"' frameborder='0' mozallowfullscreen='true' webkitallowfullscreen='true' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'></iframe>"
 
             let col_2 = document.createElement('div');
-            col_2.classList.add('col-md-4');
-            col_2.classList.add('px-3');
+            col_2.classList.add('col-md-6');
+            col_2.classList.add('px-4');
+            col_2.style.fontSize ='0.9em';
 
             let title = document.createElement('div');
-            title.classList.add('row')
+            title.classList.add('row');
             title.classList.add('no-gutters');
             title.innerHTML = "<h5>" + datum.Title + "</h5>";
 
@@ -52,8 +54,8 @@ function load_projects() {
 
 
             let col_3 = document.createElement('div');
-            col_3.classList.add('col-md-4');
-            col_3.innerHTML = "<iframe src='" + String(datum.Slides) + "></iframe>\n";
+            col_3.classList.add('col-md-3');
+            col_3.innerHTML = "<iframe src='" + String(datum.Slides) + " frameborder='0' allowfullscreen='true' mozallowfullscreen='true' webkitallowfullscreen='true'></iframe>\n";
 
 
             col_2.appendChild(title);
@@ -63,6 +65,7 @@ function load_projects() {
             new_row.appendChild(col_1);
             new_row.appendChild(col_2);
             new_row.appendChild(col_3);
+            // new_row.appendChild(document.createElement('hr'));
 
             temp.appendChild(new_row)
             bodytag.appendChild(temp);
