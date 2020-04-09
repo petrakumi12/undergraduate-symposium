@@ -1,15 +1,21 @@
 let bodytag = "";
 let data = "";
 window.onload = function () {
-    d3.csv('symposium-sample.csv').then(d => {
-            console.log('data', data);
-            data = d;
-            bodytag = document.getElementsByTagName('body')[0];
-            load_projects();
-            load_footer();
-        }
-    )
-};
+    fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTF-eItKvpFsBhUK_3hM2ihYr3Yi34IgvxSAK_Pw6L8GGODkalJ5uFKidrDTLfC8uaZ5nNtI98Wb-tz/pub?output=csv')
+        .then(response => response.blob())
+        .then(blob => {
+            var a = document.createElement('a');
+            a.href = window.URL.createObjectURL(blob);
+            d3.csv(a.href).then(d => {
+                    console.log('data', d[6].Slides);
+                    data = d;
+                    bodytag = document.getElementsByTagName('body')[0];
+                    load_projects();
+                    load_footer();
+                }
+            )
+        });
+}
 
 function load_projects() {
     let temp = document.createElement('div');
@@ -26,12 +32,12 @@ function load_projects() {
 
             let col_1 = document.createElement('div');
             col_1.classList.add('col-md-3');
-            col_1.innerHTML = " <iframe src='" + datum.Video +"' frameborder='0' mozallowfullscreen='true' webkitallowfullscreen='true' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'></iframe>"
+            col_1.innerHTML = " <iframe src='" + remove_extras(datum.Video, 'video') + "' frameborder='0' mozallowfullscreen='true' webkitallowfullscreen='true' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'></iframe>"
 
             let col_2 = document.createElement('div');
             col_2.classList.add('col-md-6');
             col_2.classList.add('px-4');
-            col_2.style.fontSize ='0.9em';
+            col_2.style.fontSize = '0.9em';
 
             let title = document.createElement('div');
             title.classList.add('row');
@@ -55,7 +61,7 @@ function load_projects() {
 
             let col_3 = document.createElement('div');
             col_3.classList.add('col-md-3');
-            col_3.innerHTML = "<iframe src='" + String(datum.Slides) + " frameborder='0' allowfullscreen='true' mozallowfullscreen='true' webkitallowfullscreen='true'></iframe>\n";
+            col_3.innerHTML = "<iframe src='" + remove_extras(String(datum.Slides), 'slides') + "' frameborder='0' allowfullscreen='true' mozallowfullscreen='true' webkitallowfullscreen='true'></iframe>\n";
 
 
             col_2.appendChild(title);
@@ -106,11 +112,38 @@ function sort_data(type) {
     footer.parentNode.removeChild(footer);
     load_projects();
     load_footer();
-    for (let e of document.getElementsByTagName('option')){
-        if(e.value===type.value){
+    for (let e of document.getElementsByTagName('option')) {
+        if (e.value === type.value) {
             e.selected = true
         }
     }
 
 
+}
+
+// function remove_video_extras(video_tags){
+//     needed = video_tags
+//     if (video_tags.includes('src=')){
+//         needed = video_tags.split('src=')[1];
+//         needed = needed.split('title=')[0];
+//         needed = needed.replace(/"/g,"");
+//     }
+//     return needed;
+// }
+
+function remove_extras(iframe_tag, type){
+    if(type === 'video'){
+        type = 'title';
+    } else {
+        type = 'width';
+    }
+    needed = iframe_tag;
+    if(needed.includes("src=")){
+        needed = iframe_tag.match(new RegExp('src=(.*)'+type))[0];
+        needed = needed.replace('src=', "");
+        needed = needed.replace(type, "");
+        needed = needed.replace(/\"/g, "");
+    }
+    console.log('needed', needed)
+    return needed;
 }
