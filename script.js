@@ -27,6 +27,7 @@ function load_projects() {
             new_row.classList.add('row');
             new_row.classList.add('no-gutters');
             new_row.classList.add('py-5');
+            new_row.classList.add('px-2');
             new_row.style.borderBottom = "1px solid grey";
             // new_row.classList.add('mx-2');
 
