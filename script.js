@@ -7,7 +7,7 @@ window.onload = function () {
             var a = document.createElement('a');
             a.href = window.URL.createObjectURL(blob);
             d3.csv(a.href).then(d => {
-                    console.log('data', d[6].Slides);
+                    console.log('data', d);
                     data = d;
                     bodytag = document.getElementsByTagName('body')[0];
                     load_projects();
@@ -140,7 +140,10 @@ function remove_extras(iframe_tag, type){
     }
     needed = iframe_tag;
     if(needed.includes("src=")){
-        needed = iframe_tag.match(new RegExp('src=(.*)'+type))[0];
+        needed = iframe_tag.match(new RegExp('src=(.*)'+type));
+        if (needed.length>0){
+            needed = needed[0];
+        }
         needed = needed.replace('src=', "");
         needed = needed.replace(type, "");
         needed = needed.replace(/\"/g, "");
