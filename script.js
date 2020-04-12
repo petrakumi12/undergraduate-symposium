@@ -133,8 +133,13 @@ function sort_data(type) {
 
 function remove_extras(iframe_tag, type){
     console.log('cur iframe', iframe_tag)
-    if(type === 'video'){
-        type = 'title';
+    if (type === 'video') {
+        if (iframe_tag.includes('youtube')){
+            type = 'frameborder'
+        }
+        else if (iframe_tag.includes('wpi')){
+            type = 'title';
+        }
     } else {
         type = 'width';
     }
