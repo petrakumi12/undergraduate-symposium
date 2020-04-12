@@ -146,7 +146,8 @@ function remove_extras(iframe_tag, type){
     needed = iframe_tag;
     if(needed.includes("src=")){
         needed = iframe_tag.match(new RegExp('src=(.*)'+type));
-        if (needed.length>0){
+        console.log('needed', needed);
+        if (needed!==null){
             needed = needed[0];
         }
         needed = needed.replace('src=', "");
