@@ -132,6 +132,7 @@ function sort_data(type) {
 // }
 
 function remove_extras(iframe_tag, type){
+    console.log('cur iframe', iframe_tag)
     if(type === 'video'){
         type = 'title';
     } else {
