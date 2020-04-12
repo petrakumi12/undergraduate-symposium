@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+    <script src="../static/generator_script.js"></script>
+</head>
+
+
+<body>
+<!--header row-->
+<div class="row no-gutters mx-4 my-4">
+
+    <div class="col-10">
+        <h2 class=" d-flex align-items-center justify-content-start">
+            Virtual Research Showcase D 2020
+        </h2>
+    </div>
+    <div class="col-2">
+        <div class="dropdown">
+            <label for="filter-dropdown">Sort By:</label>
+            <select class="custom-select" id="filter-dropdown" onchange="sort_data(this)">
+                <option selected disabled>Default</option>
+                <option value="title">Project Title</option>
+                <option value="advisor">Advisor Name</option>
+                <option value="random">Random</option>
+            </select>
+        </div>
+    </div>
+</div>
+<!--title of page-->
+<div class="row align-items-center justify-content-center no-gutters my-3">
+    <h3>Sample Major</h3>
+</div>
+
+
+<!-- Content generated here-->
+<!-- Footer generated here -->
+
+
+<style>
+    iframe {
+        width: 100%;
+        height: 100%
+    }
+</style>
+</body>
+</html>
