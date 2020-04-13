@@ -33,8 +33,10 @@ let dept_arr = ['Actuarial Mathematics',
     'Z Sample'
 ];
 window.onload = function () {
+    console.log('window width', window.innerWidth)
     load_grid();
     window.onresize = function () {
+            console.log('window width', window.innerWidth)
         if (window.innerWidth < 518) {
             for (let e of document.getElementsByClassName('content-row')) {
                 e.style.height = '100%'
@@ -45,6 +47,7 @@ window.onload = function () {
 
 
 function load_grid() {
+
     let container_tag = document.getElementById('append-grid');
     for (let i = 0; i < Math.ceil(dept_arr.length / 4); i++) {
         let row = document.createElement('div');
@@ -93,6 +96,11 @@ function load_grid() {
                 button.appendChild(title_row);
                 button.appendChild(img);
 
+                if (window.innerWidth <= 479) { //different styling for mobile devices with smaller screens
+                    console.log('less than 479');
+                    col.style.width = '100vw';
+                    row.style.height = '100%'
+                }
 
                 button.addEventListener('mouseover', function () {
                     // document.getElementById('i-'+String(idx)).style.transition = 'transform 1.3s';
