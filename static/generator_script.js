@@ -33,7 +33,13 @@ function load_projects() {
 
             let col_1 = document.createElement('div');
             col_1.classList.add('col-md-3');
-            col_1.innerHTML = " <iframe src='" + remove_extras(datum.Video, 'video') + "' frameborder='0' mozallowfullscreen='true' webkitallowfullscreen='true' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'></iframe>"
+            if((datum.Video).includes('from-jim')){
+                col_1.innerHTML = datum.Video;
+                console.log('jims code is here!');
+            } else {
+                console.log('not jims code')
+                col_1.innerHTML = " <iframe src='" + remove_extras(datum.Video, 'video') + "' frameborder='0' mozallowfullscreen='true' webkitallowfullscreen='true' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'></iframe>"
+            }
 
             let col_2 = document.createElement('div');
             col_2.classList.add('col-md-6');
@@ -74,7 +80,7 @@ function load_projects() {
             new_row.appendChild(col_3);
             // new_row.appendChild(document.createElement('hr'));
 
-            temp.appendChild(new_row)
+            temp.appendChild(new_row);
             bodytag.appendChild(temp);
         }
 
