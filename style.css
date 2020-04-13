@@ -1,3 +1,7 @@
+/*body {*/
+    /*font-family: 'Roboto', 'Consolas', 'Menlo', monospace;*/
+/*}*/
+
 .centered {
   position: absolute;
   top: 50%;
@@ -8,6 +12,6 @@
 }
 
 .darker {
-    filter: brightness(50%);
+    filter: brightness(70%);
     z-index: -1;
 }

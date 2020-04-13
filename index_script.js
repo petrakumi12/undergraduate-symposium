@@ -62,7 +62,7 @@ function load_grid() {
             let idx = (i * 4) + j;
             if (idx < dept_arr.length) {
                 let col = document.createElement('div');
-                col.classList.add('col-md-3');
+                col.classList.add('col-3');
                 // col.classList.add('px-1');
                 col.classList.add('text-center');
                 // col.style.height = '100%';
@@ -85,7 +85,6 @@ function load_grid() {
                 let img = document.createElement('img');
                 img.classList.add('img-fluid');
                 img.classList.add('darker');
-                // img.setAttribute('id','i-'+String(idx));
                 img.style.width = '100%';
                 img.style.height = '100%';
                 img.style.objectFit = 'cover';
@@ -96,10 +95,13 @@ function load_grid() {
                 button.appendChild(title_row);
                 button.appendChild(img);
 
-                if (window.innerWidth <= 479) { //different styling for mobile devices with smaller screens
-                    console.log('less than 479');
-                    col.style.width = '100vw';
-                    row.style.height = '100%'
+                if (window.innerWidth <= 980) { //different styling for mobile devices with smaller screens
+                    console.log('less than 980');
+                    row.style.height = '100%';
+                    col.classList.remove('col-md-3');
+                    col.classList.add('col-12');
+                    button.style.width = '100%';
+                    img.style.width = '100%';
                 }
 
                 button.addEventListener('mouseover', function () {
