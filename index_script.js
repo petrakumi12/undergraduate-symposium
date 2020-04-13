@@ -41,6 +41,15 @@ window.onload = function () {
             for (let e of document.getElementsByClassName('content-row')) {
                 e.style.height = '100%'
             }
+        } else {
+             for (let e of document.getElementsByClassName('content-row')) {
+                e.style.height = '25vh'
+            }
+            for (let e of document.getElementsByClassName('content-col')) {
+                e.classList.remove('col-12');
+                e.classList.add('col-md-3');
+            }
+
         }
     }
 };
@@ -65,6 +74,7 @@ function load_grid() {
                 col.classList.add('col-3');
                 // col.classList.add('px-1');
                 col.classList.add('text-center');
+                col.classList.add('content-col');
                 // col.style.height = '100%';
                 col.style.width = '100%';
 
