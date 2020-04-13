@@ -37,11 +37,17 @@ window.onload = function () {
     load_grid();
     window.onresize = function () {
             console.log('window width', window.innerWidth)
-        if (window.innerWidth < 518) {
+        if (window.innerWidth < 550) {
             for (let e of document.getElementsByClassName('content-row')) {
                 e.style.height = '100%'
             }
-        } else {
+            for (let e of document.getElementsByClassName('content-col')) {
+                e.classList.remove('col-md-3');
+                e.classList.add('col-12');
+            }
+
+        }
+        else {
              for (let e of document.getElementsByClassName('content-row')) {
                 e.style.height = '25vh'
             }
@@ -118,7 +124,7 @@ function load_grid() {
                     // document.getElementById('i-'+String(idx)).style.transition = 'transform 1.3s';
                     // document.getElementById('i-'+String(idx)).style.transform = 'scale (1.5)';
                     document.getElementById('h-' + String(idx)).style.transition = 'font-size 0.3s';
-                    document.getElementById('h-' + String(idx)).style.fontSize = '1.5em';
+                    document.getElementById('h-' + String(idx)).style.fontSize = '1.4em';
                 });
                 button.addEventListener('mouseout', function () {
                     img.style.transition = 'transform 1.3s';
