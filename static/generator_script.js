@@ -1,55 +1,61 @@
 let bodytag = "";
 let data = "";
 let els_per_page = 6;
+let from_no = 0;
+let to_no = 5;
+
+
 window.onload = function () {
+    //load header
+    load_header(false, false);
+    //load title
+    load_title('Sample Major');
+    //load content
     fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTF-eItKvpFsBhUK_3hM2ihYr3Yi34IgvxSAK_Pw6L8GGODkalJ5uFKidrDTLfC8uaZ5nNtI98Wb-tz/pub?output=csv')
         .then(response => response.blob())
         .then(blob => {
-            var a = document.createElement('a');
+            let a = document.createElement('a');
             a.href = window.URL.createObjectURL(blob);
             d3.csv(a.href).then(d => {
                     console.log('data', d);
                     data = d;
                     bodytag = document.getElementsByTagName('body')[0];
-                    load_projects(0, 5);
-                    load_page_number(0);
+                    //load projects from first no to last no on the page
+                    load_projects(from_no, to_no);
+                    //load section with page numbers
+                    load_page_number(-1);
+                    //load footer
                     load_footer();
                 }
             )
         });
-}
+};
+
+
 
 function load_projects(from_no, to_no) {
-    console.log('loading items from ', from_no, 'to', to_no)
+    console.log('loading items from ', from_no, 'to', to_no);
     let temp = document.createElement('div');
     temp.id = 'remove-me';
     let some_data = Object.values(data).slice(from_no, to_no + 1);
     for (let datum of some_data) {
         if (datum.Abstract !== undefined) {
+
             let new_row = document.createElement('div');
-            new_row.classList.add('row');
-            new_row.classList.add('no-gutters');
-            new_row.classList.add('py-5');
-            new_row.classList.add('px-3');
-            new_row.style.borderBottom = "1px solid grey";
-            // new_row.classList.add('mx-2');
+            "row no-gutters py-4 mx-3 new_row".split(" ").map(e => new_row.classList.add(e));
+
+            let video_iframe_1 = '<div class="video-div"><iframe class="video" src="';
+            let video_iframe_2 = '" frameborder="0" scrolling="no" allowfullscreen></iframe></div>';
 
             let col_1 = document.createElement('div');
-            col_1.classList.add('col-md-3');
-            if ((datum.Video).includes('from-jim')) {
-                col_1.innerHTML = datum.Video;
-                console.log('jims code is here!');
-            } else {
-                console.log('not jims code');
-                col_1.innerHTML = " <iframe src='" + remove_extras(datum.Video, 'video') + "' frameborder='0' mozallowfullscreen='true' webkitallowfullscreen='true' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'></iframe>"
-            }
-            col_1.style.backgroundColor = 'black';
+            "col-md-3 iframe-cols".split(" ").map(e => col_1.classList.add(e));
+            col_1.innerHTML = video_iframe_1 + remove_extras(datum.Video, 'video') + video_iframe_2;
 
 
             let col_2 = document.createElement('div');
-            col_2.classList.add('col-md-6');
-            col_2.classList.add('px-4');
-            col_2.style.fontSize = '0.9em';
+            "col-md-6 px-4 text-cols".split(" ").map(e => col_2.classList.add(e));
+            // col_2.style.fontSize = '0.9em';
+
 
             let title = document.createElement('div');
             title.classList.add('row');
@@ -60,8 +66,7 @@ function load_projects(from_no, to_no) {
             people.classList.add('row');
             people.classList.add('no-gutters');
             people.innerHTML = "<p>" +
-                "<b>Students: </b>" + datum.Students +
-                "<br/>" +
+                "<b>Students: </b>" + datum.Students + "<br/>" +
                 "<b>Advisors: </b>" + datum.Advisors +
                 "</p>";
 
@@ -72,9 +77,8 @@ function load_projects(from_no, to_no) {
 
 
             let col_3 = document.createElement('div');
-            col_3.classList.add('col-md-3');
-            col_3.innerHTML = "<iframe src='" + remove_extras(String(datum.Slides), 'slides') + "' frameborder='0' allowfullscreen='true' mozallowfullscreen='true' webkitallowfullscreen='true'></iframe>\n";
-
+            "col-md-3 iframe-cols".split(" ").map(e => col_3.classList.add(e));
+            col_3.innerHTML = "<iframe src='" + remove_extras(String(datum.Slides), 'slides') + "' frameborder='0' allowfullscreen></iframe>\n";
 
             col_2.appendChild(title);
             col_2.appendChild(people);
@@ -83,6 +87,13 @@ function load_projects(from_no, to_no) {
             new_row.appendChild(col_1);
             new_row.appendChild(col_2);
             new_row.appendChild(col_3);
+
+            // col_1.classList.add('h-100');
+            // col_2.classList.add('h-100');
+            // col_3.classList.add('h-100');
+            // col_1.style.height = '100%';
+            // col_2.style.height = '100%';
+            // col_3.style.height = '100%';
             // new_row.appendChild(document.createElement('hr'));
 
             temp.appendChild(new_row);
@@ -93,73 +104,79 @@ function load_projects(from_no, to_no) {
 }
 
 function load_page_number(no) {
-    let total_pages = Math.ceil(Object.values(data).length/els_per_page);
-    if (no === 0) {
+    let total_items = Object.values(data).length;
+    let total_pages = Math.ceil(total_items / els_per_page);
+    console.log('total len of data', Object.values(data).length);
+    console.log('changing page number to', no);
+    if (no === -1) {
+        load_baseline()
+    } else {
+        let start = no * 6;
+        let end = (no * 6) + 5;
+        from_no = start;
+        to_no = end;
+        let temp = document.getElementById('remove-me');
+        let footer = document.getElementById('footer');
+        let page_no_container = document.getElementById('page_no_container');
+        temp.parentNode.removeChild(temp);
+        footer.parentNode.removeChild(footer);
+        page_no_container.parentNode.removeChild(page_no_container);
+        load_projects(from_no, to_no);
+        load_baseline();
+        load_footer();
+        document.getElementById('prev_btn').disabled = no === 0;
+        document.getElementById('next_btn').disabled = no === total_pages - 1;
+    }
+
+    function load_baseline() {
+        if (no === -1) {
+            no = 0
+        }
+        let start = no * 6;
+        let end = (no * 6) + 5;
         let page_flip_div = document.createElement('div');
         page_flip_div.classList.add('row');
         page_flip_div.classList.add('no-gutters');
+        page_flip_div.classList.add('py-2');
+        // page_flip_div.classList.add('mb-2');
         page_flip_div.classList.add('d-flex');
         page_flip_div.classList.add('align-items-center');
         page_flip_div.classList.add('justify-content-center');
+        page_flip_div.setAttribute('id', 'page_no_container');
 
         let prev_col = document.createElement('div');
         prev_col.classList.add('col');
         prev_col.classList.add('d-flex');
         prev_col.classList.add('align-items-center');
         prev_col.classList.add('justify-content-end');
-        prev_col.innerHTML = "<p><a> < Previous </a></p>";
+        // prev_col.setAttribute('id', 'prev_col');
+        prev_col.innerHTML = "<button id='prev_btn' type='button' class='btn btn-light' onclick='load_page_number(" + (no - 1) + ")' disabled> < Previous </button>";
 
         let center_col = document.createElement('div');
-        center_col.classList.add('col');
+        center_col.classList.add('col-3');
         center_col.classList.add('d-flex');
         center_col.classList.add('align-items-center');
         center_col.classList.add('justify-content-center');
-        center_col.innerHTML = "<p> Page " + (no+1) + " of " + total_pages + "</p>";
+        center_col.innerHTML = "<p class='m-0 text-center pageno-text' > Page <span class='pageno-span'>" + (no + 1) + "</span> of <span class='pageno-span'>" + total_pages + "</span><br/>Items <span class='pageno-span'>" + start + " - " + end + "</span> of <span class='pageno-span'>" + total_items + "</span> </p>";
 
         let next_col = document.createElement('div');
         next_col.classList.add('col');
         next_col.classList.add('d-flex');
         next_col.classList.add('align-items-center');
         next_col.classList.add('justify-content-start');
-        next_col.innerHTML = "<p><a> Next > </a></p>";
+        // next_col.setAttribute('id', 'next_col');
+        next_col.innerHTML = "<button id='next_btn' type='button' class='btn btn-light' onclick='load_page_number(" + (no + 1) + ")'> Next > </button>";
 
         page_flip_div.appendChild(prev_col);
         page_flip_div.appendChild(center_col);
         page_flip_div.appendChild(next_col);
         document.getElementsByTagName('body')[0].appendChild(page_flip_div);
-
-    } else {
-        let start = no * 6;
-        let end = (no * 6) + 5;
-        let temp = document.getElementById('remove-me');
-        let footer = document.getElementById('footer');
-        temp.parentNode.removeChild(temp);
-        footer.parentNode.removeChild(footer);
-        load_projects(start, end);
-        load_footer();
     }
     // let div_content = "<a href='load_page_number("+(no-1)+")'> < Previous </a>"
-
-}
-
-function load_footer() {
-    let footer = document.createElement('footer');
-    footer.setAttribute('id', 'footer');
-    footer.classList.add('page-footer');
-    footer.classList.add('font-small');
-    footer.classList.add('white');
-
-    let adiv = document.createElement('div');
-    adiv.classList.add('footer-copyright');
-    adiv.classList.add('text-center');
-    adiv.classList.add('py-3');
-    adiv.innerHTML = 'Worcester Polytechnic Institute <a href="https://www.wpi.edu"> wpi.edu</a>';
-
-    footer.appendChild(adiv);
-    document.getElementsByTagName('body')[0].appendChild(footer)
 }
 
 function sort_data(type) {
+
     console.log('we here', type);
     switch (type.value) {
         case 'title':
@@ -175,31 +192,22 @@ function sort_data(type) {
             data = d3.shuffle(data);
             break;
     }
-
     let temp = document.getElementById('remove-me');
     let footer = document.getElementById('footer');
-    temp.parentNode.removeChild(temp);
-    footer.parentNode.removeChild(footer);
-    load_projects();
-    load_footer();
+    // console.log('temp and footer', temp, footer);
+    if (temp !== null && footer !== null) {
+        temp.parentNode.removeChild(temp);
+        footer.parentNode.removeChild(footer);
+        load_projects(from_no, to_no);
+        load_footer();
+    }
     for (let e of document.getElementsByTagName('option')) {
         if (e.value === type.value) {
             e.selected = true
         }
     }
 
-
 }
-
-// function remove_video_extras(video_tags){
-//     needed = video_tags
-//     if (video_tags.includes('src=')){
-//         needed = video_tags.split('src=')[1];
-//         needed = needed.split('title=')[0];
-//         needed = needed.replace(/"/g,"");
-//     }
-//     return needed;
-// }
 
 function remove_extras(iframe_tag, type) {
     if (type === 'video') {
@@ -219,6 +227,6 @@ function remove_extras(iframe_tag, type) {
         needed = needed.replace(type, "");
         needed = needed.replace(/\"/g, "");
     }
-    console.log('needed', needed);
+    // console.log('needed', needed);
     return needed;
 }

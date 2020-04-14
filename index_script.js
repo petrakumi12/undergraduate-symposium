@@ -33,15 +33,25 @@ let dept_arr = [
     'Writing',
     'Z Sample'
 ];
-let mobile_width = 700;
+let small_screen = 700;
+
 window.onload = function () {
+    //check if we're on mobile
     console.log('mobile?', is_mobile());
     console.log('window width', window.innerWidth);
+    //load header
+    load_header(true, false);
+    //load title
+    load_title('Major Qualifying Projects and Undergraduate Research');
+    //add to body the div where content will be loaded
+    add_content_div();
+    //load grid with all departments
     load_grid();
+    //add resize window listener if on pc to change layout on small screens
     if (!is_mobile()) {
         window.onresize = function () {
             console.log('window width', window.innerWidth);
-            if (window.innerWidth < mobile_width) {
+            if (window.innerWidth < small_screen) {
                 console.log('window resized to less than 980');
                 for (let e of document.getElementsByClassName('content-row')) {
                     e.style.height = '100%'
@@ -67,6 +77,15 @@ window.onload = function () {
     }
 };
 
+function add_content_div(){
+    let content_div = document.createElement('div');
+    content_div.setAttribute('id', "append-grid");
+    for(let e of "row w-100 no-gutters mb-2".split(" ")){
+        content_div.classList.add(e)
+    }
+    document.getElementsByTagName('body')[0].appendChild(content_div)
+
+}
 
 function load_grid() {
 
@@ -156,23 +175,6 @@ function generate_page_name(input) {
     input = input.replace(/'/g, "");
     input = input.replace(/,/g, "");
     return 'dept-pages/' + input.toLowerCase() + '.html';
-}
-
-function load_footer() {
-    let footer = document.createElement('footer');
-    footer.setAttribute('id', 'footer');
-    footer.classList.add('page-footer');
-    footer.classList.add('font-small');
-    footer.classList.add('white');
-
-    let adiv = document.createElement('div');
-    adiv.classList.add('footer-copyright');
-    adiv.classList.add('text-center');
-    adiv.classList.add('py-3');
-    adiv.innerHTML = 'Worcester Polytechnic Institute <a href="https://www.wpi.edu"> wpi.edu</a>';
-
-    footer.appendChild(adiv);
-    document.getElementsByTagName('body')[0].appendChild(footer)
 }
 
 function is_mobile() {
