@@ -1,43 +1,46 @@
-let dept_arr = ['Actuarial Mathematics',
-    'Aerospace Engineering',
-    'Applied Physics',
-    'Architectural Engineering',
+let dept_arr = [
+    // 'Actuarial Mathematics',
+    // 'Aerospace Engineering',
+    // 'Applied Physics',
+    // 'Architectural Engineering',
     'Biochemistry',
     'Bioinformatics and Computational Biology',
     'Biology and Biotechnology',
     'Biomedical Engineering',
-    'Business',
-    'Chemical Engineering',
+    // 'Business',
+    // 'Chemical Engineering',
     'Chemistry and Biochemistry',
     'Civil Engineering',
     'Computer Science',
     'Data Science',
-    'Economics',
+    'Economic Science',
     'Electrical and Computer Engineering',
-    'Environmental and Sustainability Studies',
+    // 'Environmental and Sustainability Studies',
     'Environmental Engineering',
     'Humanities and Arts',
     'Industrial Engineering',
     'Interactive Media and Game Development',
-    'International and Global Studies',
-    'Liberal Arts and Engineering',
+    // 'International and Global Studies',
+    // 'Liberal Arts and Engineering',
     'Management Engineering',
     'Management Information Systems',
     'Mathematical Sciences',
     'Mechanical Engineering',
     'Physics',
-    'Psychology',
+    'Psychological Science',
     'Robotics Engineering',
-    'Society, Technology, and Policy',
+    // 'Society, Technology, and Policy',
     'Writing',
     'Z Sample'
 ];
+let mobile_width = 700
 window.onload = function () {
-    console.log('window width', window.innerWidth)
+    console.log('window width', window.innerWidth);
     load_grid();
     window.onresize = function () {
-            console.log('window width', window.innerWidth)
-        if (window.innerWidth < 550) {
+            console.log('window width', window.innerWidth);
+        if (window.innerWidth < mobile_width) {
+            console.log('window resized to less than 980');
             for (let e of document.getElementsByClassName('content-row')) {
                 e.style.height = '100%'
             }
@@ -48,6 +51,7 @@ window.onload = function () {
 
         }
         else {
+            console.log('window resized to over 980');
              for (let e of document.getElementsByClassName('content-row')) {
                 e.style.height = '25vh'
             }
@@ -70,7 +74,7 @@ function load_grid() {
         row.classList.add('no-gutters');
         row.classList.add('px-3');
         row.classList.add('content-row');
-        row.style.minHeight = "25vh";
+        row.style.height = "25vh";
         row.style.width = "100vw";
 
         for (let j = 0; j < 4; j++) {
@@ -111,7 +115,7 @@ function load_grid() {
                 button.appendChild(title_row);
                 button.appendChild(img);
 
-                if (window.innerWidth <= 980) { //different styling for mobile devices with smaller screens
+                if (window.innerWidth <= mobile_width) { //different styling for mobile devices with smaller screens
                     console.log('less than 980');
                     row.style.height = '100%';
                     col.classList.remove('col-md-3');
