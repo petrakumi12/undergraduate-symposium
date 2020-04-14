@@ -42,6 +42,7 @@ function load_projects() {
             }
             col_1.style.backgroundColor = 'black';
 
+
             let col_2 = document.createElement('div');
             col_2.classList.add('col-md-6');
             col_2.classList.add('px-4');
