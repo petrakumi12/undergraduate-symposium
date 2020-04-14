@@ -33,33 +33,36 @@ let dept_arr = [
     'Writing',
     'Z Sample'
 ];
-let mobile_width = 700
+let mobile_width = 700;
 window.onload = function () {
+    console.log('mobile?', is_mobile());
     console.log('window width', window.innerWidth);
     load_grid();
-    window.onresize = function () {
+    if(!is_mobile()) {
+        window.onresize = function () {
             console.log('window width', window.innerWidth);
-        if (window.innerWidth < mobile_width) {
-            console.log('window resized to less than 980');
-            for (let e of document.getElementsByClassName('content-row')) {
-                e.style.height = '100%'
-            }
-            for (let e of document.getElementsByClassName('content-col')) {
-                e.classList.remove('col-md-3');
-                e.classList.add('col-12');
-            }
+            if (window.innerWidth < mobile_width) {
+                console.log('window resized to less than 980');
+                for (let e of document.getElementsByClassName('content-row')) {
+                    e.style.height = '100%'
+                }
+                for (let e of document.getElementsByClassName('content-col')) {
+                    e.classList.remove('col-md-3');
+                    e.classList.add('col-12');
+                }
 
-        }
-        else {
-            console.log('window resized to over 980');
-             for (let e of document.getElementsByClassName('content-row')) {
-                e.style.height = '25vh'
             }
-            for (let e of document.getElementsByClassName('content-col')) {
-                e.classList.remove('col-12');
-                e.classList.add('col-md-3');
-            }
+            else {
+                console.log('window resized to over 980');
+                for (let e of document.getElementsByClassName('content-row')) {
+                    e.style.height = '25vh'
+                }
+                for (let e of document.getElementsByClassName('content-col')) {
+                    e.classList.remove('col-12');
+                    e.classList.add('col-md-3');
+                }
 
+            }
         }
     }
 };
@@ -115,7 +118,7 @@ function load_grid() {
                 button.appendChild(title_row);
                 button.appendChild(img);
 
-                if (window.innerWidth <= mobile_width) { //different styling for mobile devices with smaller screens
+                if (is_mobile()) { //different styling for mobile devices with smaller screens
                     console.log('less than 980');
                     row.style.height = '100%';
                     col.classList.remove('col-md-3');
@@ -171,3 +174,7 @@ function load_footer() {
     footer.appendChild(adiv);
     document.getElementsByTagName('body')[0].appendChild(footer)
 }
+
+function is_mobile() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
