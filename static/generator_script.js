@@ -40,6 +40,7 @@ function load_projects() {
                 console.log('not jims code')
                 col_1.innerHTML = " <iframe src='" + remove_extras(datum.Video, 'video') + "' frameborder='0' mozallowfullscreen='true' webkitallowfullscreen='true' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'></iframe>"
             }
+            col_1.style.backgroundColor = 'black';
 
             let col_2 = document.createElement('div');
             col_2.classList.add('col-md-6');
