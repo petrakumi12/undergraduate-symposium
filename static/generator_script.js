@@ -1,5 +1,6 @@
 let bodytag = "";
 let data = "";
+let els_per_page = 6;
 window.onload = function () {
     fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTF-eItKvpFsBhUK_3hM2ihYr3Yi34IgvxSAK_Pw6L8GGODkalJ5uFKidrDTLfC8uaZ5nNtI98Wb-tz/pub?output=csv')
         .then(response => response.blob())
@@ -10,18 +11,20 @@ window.onload = function () {
                     console.log('data', d);
                     data = d;
                     bodytag = document.getElementsByTagName('body')[0];
-                    load_projects();
+                    load_projects(0, 5);
+                    load_page_number(0);
                     load_footer();
                 }
             )
         });
 }
 
-function load_projects() {
+function load_projects(from_no, to_no) {
+    console.log('loading items from ', from_no, 'to', to_no)
     let temp = document.createElement('div');
     temp.id = 'remove-me';
-
-    for (let datum of Object.values(data)) {
+    let some_data = Object.values(data).slice(from_no, to_no + 1);
+    for (let datum of some_data) {
         if (datum.Abstract !== undefined) {
             let new_row = document.createElement('div');
             new_row.classList.add('row');
@@ -33,11 +36,11 @@ function load_projects() {
 
             let col_1 = document.createElement('div');
             col_1.classList.add('col-md-3');
-            if((datum.Video).includes('from-jim')){
+            if ((datum.Video).includes('from-jim')) {
                 col_1.innerHTML = datum.Video;
                 console.log('jims code is here!');
             } else {
-                console.log('not jims code')
+                console.log('not jims code');
                 col_1.innerHTML = " <iframe src='" + remove_extras(datum.Video, 'video') + "' frameborder='0' mozallowfullscreen='true' webkitallowfullscreen='true' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'></iframe>"
             }
             col_1.style.backgroundColor = 'black';
@@ -89,13 +92,71 @@ function load_projects() {
     }
 }
 
+function load_page_number(no) {
+    let total_pages = Math.ceil(Object.values(data).length/els_per_page);
+    if (no === 0) {
+        let page_flip_div = document.createElement('div');
+        page_flip_div.classList.add('row');
+        page_flip_div.classList.add('no-gutters');
+        page_flip_div.classList.add('d-flex');
+        page_flip_div.classList.add('align-items-center');
+        page_flip_div.classList.add('justify-content-center');
+
+        let prev_col = document.createElement('div');
+        prev_col.classList.add('col');
+        prev_col.classList.add('d-flex');
+        prev_col.classList.add('align-items-center');
+        prev_col.classList.add('justify-content-end');
+        prev_col.innerHTML = "<p><a> < Previous </a></p>";
+
+        let center_col = document.createElement('div');
+        center_col.classList.add('col');
+        center_col.classList.add('d-flex');
+        center_col.classList.add('align-items-center');
+        center_col.classList.add('justify-content-center');
+        center_col.innerHTML = "<p> Page " + (no+1) + " of " + total_pages + "</p>";
+
+        let next_col = document.createElement('div');
+        next_col.classList.add('col');
+        next_col.classList.add('d-flex');
+        next_col.classList.add('align-items-center');
+        next_col.classList.add('justify-content-start');
+        next_col.innerHTML = "<p><a> Next > </a></p>";
+
+        page_flip_div.appendChild(prev_col);
+        page_flip_div.appendChild(center_col);
+        page_flip_div.appendChild(next_col);
+        document.getElementsByTagName('body')[0].appendChild(page_flip_div);
+
+    } else {
+        let start = no * 6;
+        let end = (no * 6) + 5;
+        let temp = document.getElementById('remove-me');
+        let footer = document.getElementById('footer');
+        temp.parentNode.removeChild(temp);
+        footer.parentNode.removeChild(footer);
+        load_projects(start, end);
+        load_footer();
+    }
+    // let div_content = "<a href='load_page_number("+(no-1)+")'> < Previous </a>"
+
+}
+
 function load_footer() {
-    <!-- footer here -->
-    bodytag.innerHTML = bodytag.innerHTML + '<footer id="footer" class="page-footer font-small white">' +
-        '<div class="footer-copyright text-center py-3">Worcester Polytechnic Institute ' +
-        '<a href="https://www.wpi.edu"> wpi.edu</a> ' +
-        '</div>' +
-        '</footer>'
+    let footer = document.createElement('footer');
+    footer.setAttribute('id', 'footer');
+    footer.classList.add('page-footer');
+    footer.classList.add('font-small');
+    footer.classList.add('white');
+
+    let adiv = document.createElement('div');
+    adiv.classList.add('footer-copyright');
+    adiv.classList.add('text-center');
+    adiv.classList.add('py-3');
+    adiv.innerHTML = 'Worcester Polytechnic Institute <a href="https://www.wpi.edu"> wpi.edu</a>';
+
+    footer.appendChild(adiv);
+    document.getElementsByTagName('body')[0].appendChild(footer)
 }
 
 function sort_data(type) {
@@ -142,10 +203,10 @@ function sort_data(type) {
 
 function remove_extras(iframe_tag, type) {
     if (type === 'video') {
-        if (iframe_tag.includes('youtube')){
+        if (iframe_tag.includes('youtube')) {
             type = 'frameborder'
         }
-        else if (iframe_tag.includes('wpi')){
+        else if (iframe_tag.includes('wpi')) {
             type = 'title';
         }
     } else {
