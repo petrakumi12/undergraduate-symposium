@@ -1,8 +1,23 @@
-/*body {*/
-/*font-family: 'Roboto', 'Consolas', 'Menlo', monospace;*/
-/*}*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
+
+body {
+/*font-family: 'Open Sans Semibold', sans-serif;*/
+}
+
 h2 {
+    /*font-family: 'Segoe UI', serif;*/
     cursor: pointer;
+}
+
+
+h3 {
+    font-family: 'Segoe UI Light', serif;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
 }
 
 .centered {
@@ -19,9 +34,9 @@ h2 {
     z-index: -1;
 }
 
-iframe {
-    width: 100%;
-    height: 100%;
+
+.card-text {
+    font-family: "Segoe UI", sans-serif;
 }
 
 .video-div {
@@ -43,6 +58,14 @@ iframe {
     height: 100%;
 }
 
+.project-title {
+    font-family: 'Crimson Text', serif ;
+}
+
+.abstract-text {
+    font-family: "Segoe UI Light", sans-serif;
+}
+
 .pageno-text {
     color: #4a4a4a;
 }
@@ -61,4 +84,9 @@ iframe {
 
 .new_row {
     border-bottom: 1px solid #b8bcbf;
+}
+
+.footer-text {
+    font-size: 1em;
+    font-family: "Segoe UI Light", sans-serif;
 }

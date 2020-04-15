@@ -73,7 +73,7 @@ function load_projects(from_no, to_no) {
             let abstract = document.createElement('div');
             abstract.classList.add('row');
             abstract.classList.add('no-gutters');
-            abstract.innerHTML = "<p>" + datum.Abstract + "</p>";
+            abstract.innerHTML = "<p class='abstract-text'>" + datum.Abstract + "</p>";
 
 
             let col_3 = document.createElement('div');

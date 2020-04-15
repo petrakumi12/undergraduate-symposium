@@ -93,17 +93,34 @@ function load_footer() {
     let footer = document.createElement('footer');
     footer.setAttribute('id', 'footer');
     footer.style.backgroundColor = '#ac2b37';
-    footer.style.borderTop = "2px solid"+ "#701c23";
-    "page-footer font-small white"
+    // footer.style.borderTop = "1px solid"+ "#ce2f46";
+    "page-footer font-small white mt-2 py-1"
         .split(" ")
         .map(e => footer.classList.add(e));
 
-    let adiv = document.createElement('div');
-    adiv.innerHTML = 'Worcester Polytechnic Institute  <br/><a class="text-white" href="https://www.wpi.edu"> <u>wpi.edu</u></a>';
-    "footer-copyright text-center text-white py-1"
-        .split(" ")
-        .map(e => adiv.classList.add(e));
+    // let row_div = document.createElement('div');
+    // row_div.classList.add('row');
+    // row_div.classList.add('no-gutters');
 
-    footer.appendChild(adiv);
+    let adiv_1 = document.createElement('div');
+    adiv_1.style.opacity = 0.9;
+    adiv_1.innerHTML = 'Office of Undergraduate Research | Worcester Polytechnic Institute  | <a class="text-white" href="https://www.wpi.edu"> <u>wpi.edu</u></a> '
+        // '<br/> Organized by: Prof. Suzanne L. Weekes, Associate Dean of Undergraduate Studies | Ally M. Salvino \'22 |  Petra Kumi \'20';
+    "col footer-copyright text-center text-white pl-3 footer-text"
+        .split(" ")
+        .map(e => adiv_1.classList.add(e));
+
+    let adiv_2 = document.createElement('div');
+    adiv_2.style.opacity = 0.7;
+    adiv_2.innerHTML = 'Organizers: &nbsp &nbsp Prof. Suzanne L. Weekes, Associate Dean of Undergraduate Studies &nbsp &nbsp Ally M. Salvino \'22 &nbsp &nbsp Petra Kumi \'20';
+    "col footer-copyright text-center text-white pr-3 footer-text"
+        .split(" ")
+        .map(e => adiv_2.classList.add(e));
+
+    // row_div.appendChild(adiv_1);
+    // row_div.appendChild(adiv_2);
+    // footer.appendChild(row_div);
+    footer.appendChild(adiv_1);
+    footer.appendChild(adiv_2);
     document.getElementsByTagName('body')[0].appendChild(footer)
 }

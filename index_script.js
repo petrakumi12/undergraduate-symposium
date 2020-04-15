@@ -116,11 +116,11 @@ function load_grid() {
                  if (is_mobile()) { //different styling for mobile devices with smaller screens
                     console.log('loading mobile layout');
                     col.classList.add('col-12');
-                    title_row.innerHTML = "<h3 id='h-" + String(idx) + "' style='font-size: 2em'>" + dept_arr[idx] + "</h3>";
+                    title_row.innerHTML = "<h3 class='card-text' id='h-" + String(idx) + "' style='font-size: 2em'>" + dept_arr[idx] + "</h3>";
                 } else {
                     console.log('loading pc layout');
                     col.classList.add('col-3');
-                    title_row.innerHTML = "<h3 id='h-" + String(idx) + "' style='font-size: 1.3em'>" + dept_arr[idx] + "</h3>";
+                    title_row.innerHTML = "<h3 class='card-text' id='h-" + String(idx) + "' style='font-size: 1.3em'>" + dept_arr[idx] + "</h3>";
                 }
 
                 let button = document.createElement('button');
