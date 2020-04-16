@@ -65,22 +65,27 @@ window.onload = function () {
             else {
                 console.log('window resized to over 980');
                 for (let e of document.getElementsByClassName('content-row')) {
-                    e.style.height = '25vh'
+                    e.style.height = '25vh';
+                    // e.style.maxHeight = '25vh'
                 }
                 for (let e of document.getElementsByClassName('content-col')) {
                     e.classList.remove('col-12');
                     e.classList.add('col-md-3');
+                    e.style.maxHeight = '100%'
                 }
-
+                for(let e of document.getElementsByTagName('img')){
+                    e.style.objectFit = 'cover';
+                    e.style.zIndex = -10
+                }
             }
         }
     }
 };
 
-function add_content_div(){
+function add_content_div() {
     let content_div = document.createElement('div');
     content_div.setAttribute('id', "append-grid");
-    for(let e of "row w-100 no-gutters mb-2".split(" ")){
+    for (let e of "row w-100 no-gutters mb-2".split(" ")) {
         content_div.classList.add(e)
     }
     document.getElementsByTagName('body')[0].appendChild(content_div)
@@ -98,7 +103,7 @@ function load_grid() {
         row.classList.add('content-row');
         row.style.width = "100vw";
 
-        is_mobile() ?  row.style.height = '100%' : row.style.minHeight = "25vh";
+        (is_mobile() || window.innerWidth < small_screen) ? row.style.height = '100%' : row.style.minHeight = "25vh";
 
         for (let j = 0; j < 4; j++) {
             let idx = (i * 4) + j;
@@ -110,13 +115,17 @@ function load_grid() {
                 // col.style.height = '100%';
                 col.style.width = '100%';
 
-                 let title_row = document.createElement('div');
+                let title_row = document.createElement('div');
                 title_row.classList.add('centered');
 
-                 if (is_mobile()) { //different styling for mobile devices with smaller screens
+                if (is_mobile() || window.innerWidth < small_screen) { //different styling for mobile devices with smaller screens
                     console.log('loading mobile layout');
                     col.classList.add('col-12');
-                    title_row.innerHTML = "<h3 class='card-text' id='h-" + String(idx) + "' style='font-size: 2em'>" + dept_arr[idx] + "</h3>";
+                    if (is_mobile()) {
+                        title_row.innerHTML = "<h3 class='card-text' id='h-" + String(idx) + "' style='font-size: 2em'>" + dept_arr[idx] + "</h3>";
+                    } else {
+                        title_row.innerHTML = "<h3 class='card-text' id='h-" + String(idx) + "' style='font-size: 1.3em'>" + dept_arr[idx] + "</h3>";
+                    }
                 } else {
                     console.log('loading pc layout');
                     col.classList.add('col-3');
