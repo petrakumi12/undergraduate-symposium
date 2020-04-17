@@ -1,18 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700&display=swap');*/
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
+
 
 body {
-/*font-family: 'Open Sans Semibold', sans-serif;*/
+/*font-family: 'Roboto Semibold', sans-serif;*/
 }
 
 h2 {
-    /*font-family: 'Segoe UI', serif;*/
+    font-family: 'Roboto', sans-serif;
+    /*font-weight: bold;*/
     cursor: pointer;
 }
 
 
 h3 {
-    font-family: 'Segoe UI Light', serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
 }
 
 iframe {
@@ -36,7 +41,10 @@ iframe {
 
 
 .card-text {
-    font-family: "Segoe UI", sans-serif;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+
 }
 
 .video-div {
@@ -44,7 +52,7 @@ iframe {
     top: 50%;
     transform: translateY(-50%);
     padding-bottom: 56.25%;
-    padding-top: 0px;
+    padding-top: 0;
     height: 0;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -59,11 +67,11 @@ iframe {
 }
 
 .project-title {
-    font-family: 'Crimson Text', serif ;
+    font-family: 'Roboto', sans-serif ;
 }
 
 .abstract-text {
-    /*font-family: "Segoe UI Light", sans-serif;*/
+    /*font-family: "PT Sans Light", sans-serif;*/
 }
 
 .pageno-text {
@@ -88,5 +96,6 @@ iframe {
 
 .footer-text {
     font-size: 1em;
-    font-family: "Segoe UI Light", sans-serif;
+    font-family: "Roboto", sans-serif;
+    font-weight: lighter;
 }
