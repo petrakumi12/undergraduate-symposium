@@ -1,18 +1,18 @@
 let dept_arr = [
     // 'Actuarial Mathematics',
-    // 'Aerospace Engineering',
+    'Aerospace Engineering',
     // 'Applied Physics',
-    // 'Architectural Engineering',
+    'Architectural Engineering',
     'Biochemistry',
     'Bioinformatics and Computational Biology',
     'Biology and Biotechnology',
     'Biomedical Engineering',
     // 'Business',
     // 'Chemical Engineering',
-    'Chemistry and Biochemistry',
-    'Civil Engineering',
+    'Chemistry',
+    // 'Civil Engineering',
     'Computer Science',
-    'Data Science',
+    // 'Data Science',
     'Economic Science',
     'Electrical and Computer Engineering',
     // 'Environmental and Sustainability Studies',
@@ -29,9 +29,9 @@ let dept_arr = [
     'Physics',
     'Psychological Science',
     'Robotics Engineering',
+    'Professional Writing',
     // 'Society, Technology, and Policy',
-    'Writing',
-    'Z Sample'
+    // 'Z Sample'
 ];
 let small_screen = 700;
 
@@ -44,6 +44,7 @@ window.onload = function () {
     //load title
     load_title('Major Qualifying Projects and Undergraduate Research');
     //add to body the div where content will be loaded
+    add_search_button(true);
     add_content_div();
     //load grid with all departments
     load_grid();
@@ -85,7 +86,7 @@ window.onload = function () {
 function add_content_div() {
     let content_div = document.createElement('div');
     content_div.setAttribute('id', "append-grid");
-    for (let e of "row w-100 no-gutters mb-2".split(" ")) {
+    for (let e of "row w-100 no-gutters pb-5 mb-4".split(" ")) {
         content_div.classList.add(e)
     }
     document.getElementsByTagName('body')[0].appendChild(content_div)
