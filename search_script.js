@@ -1,17 +1,34 @@
 // Modal
 var modal, btn, span;
-
 // Table
 var indexedProjectsTable, indexedProjectsTBody, searchInput, bookCountBadge = "";
-
 //Listeners
 var updateProjectCount, hideElement, showElement = "";
-
 // Search function
 var search, results, allProjects = [];
-
 // Checkboxes
 var indexOnAuthorCheckbox, indexOnTitleCheckbox, indexOnAdvisorsCheckbox, indexOnMajorCheckbox = "";
+
+
+window.onload = function () {
+    update_globals();
+    loadFromCsv().then(() => {
+        // download(allProjects, 'all_data.csv', 'type: ".csv"');
+        updateProjectCount(allProjects.length);
+        var loadingProgressBar = document.getElementById('loadingProgressBar');
+        hideElement(loadingProgressBar);
+        showElement(indexedProjectsTable);
+        rebuildSearchIndex();
+        updateProjectTable(allProjects);
+        load_footer();
+        document.getElementById('footer').style.fontSize = '1.5em';
+        document.getElementsByTagName('h2')[0].onclick = function (e) {
+            e.preventDefault();
+            window.location.href = 'index.html'
+        }
+    })
+};
+
 
 var rebuildAndRerunSearch = function () {
     rebuildSearchIndex();
@@ -157,20 +174,6 @@ function update_globals() {
     searchInput.oninput = searchProjects;
 }
 
-window.onload = function () {
-    update_globals();
-    loadResults().then(() => {
-        updateProjectCount(allProjects.length);
-        var loadingProgressBar = document.getElementById('loadingProgressBar');
-        hideElement(loadingProgressBar);
-        showElement(indexedProjectsTable);
-        rebuildSearchIndex();
-        updateProjectTable(allProjects);
-        load_footer();
-        document.getElementById('footer').style.fontSize = '1.5em';
-        document.getElementsByTagName('h2')[0].onclick = function(e){ e.preventDefault(); window.location.href = 'index.html'}
-    })
-};
 
 /**
  * Load project google sheet csv values
@@ -192,3 +195,35 @@ async function loadResults() {
     }
 }
 
+async function loadFromCsv() {
+    await d3.csv('all_data.csv').then(d => {
+            allProjects = allProjects.concat(d);
+            console.log('all projects', allProjects)
+        }
+    );
+}
+
+// function download(content, fileName, contentType) {
+//     content = JSON.stringify(content);
+//     var a = document.createElement("a");
+//     var file = new Blob([content], {type: contentType});
+//     a.href = URL.createObjectURL(file);
+//     a.download = fileName;
+//     a.click();
+// }
+
+function download(content, filename, type) {
+    const items = content;
+    const replacer = (key, value) => value === null ? '' : value; // specify how you want to handle null values here
+    const header = Object.keys(items[0]);
+    let csv = items.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','));
+    console.log('csv here', csv);
+    csv.unshift(header.join(','));
+    csv = csv.join('\r\n');
+
+    var a = document.createElement("a");
+    var file = new Blob([csv], {type: type});
+    a.href = URL.createObjectURL(file);
+    a.download = filename;
+    a.click()
+}
