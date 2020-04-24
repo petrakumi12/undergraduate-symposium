@@ -19,7 +19,7 @@ window.onload = function () {
         hideElement(loadingProgressBar);
         showElement(indexedProjectsTable);
         rebuildSearchIndex();
-        updateProjectTable(allProjects);
+        // updateProjectTable(allProjects);
         load_footer();
         document.getElementById('footer').style.fontSize = '1.5em';
         document.getElementsByTagName('h2')[0].onclick = function (e) {
@@ -114,9 +114,10 @@ var updateProjectCountAndTable = function () {
         updateProjectTable(results);
     } else if (!!searchInput.value) {
         updateProjectTable([]);
-    } else {
+    }
+    else {
         updateProjectCount(allProjects.length);
-        updateProjectTable(allProjects);
+        updateProjectTable([]);
     }
 };
 
@@ -170,6 +171,13 @@ function update_globals() {
             modal.style.display = "none";
         }
     };
+
+    $("form").keypress(function (e) {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
 
     searchInput.oninput = searchProjects;
 }
