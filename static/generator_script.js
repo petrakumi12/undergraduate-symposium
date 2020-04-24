@@ -12,27 +12,40 @@ window.onload = function () {
     load_title(document.title);
     //load content
     add_search_button(false);
-    fetch(id_sheet_dict[document.title])
-        .then(response => response.blob())
-        .then(blob => {
-            let a = document.createElement('a');
-            a.href = window.URL.createObjectURL(blob);
-            d3.csv(a.href).then(d => {
-                    console.log('data', d);
-                    data = d;
-                    bodytag = document.getElementsByTagName('body')[0];
-                    //load projects from first no to last no on the page
-                    load_projects(from_no, to_no);
-                    //load section with page numbers
-                    load_page_number(-1);
-                    //load footer
-                    load_footer();
-                }
-            )
-        });
+    if (id_sheet_dict[document.title].includes('google')) {
+        fetch(id_sheet_dict[document.title])
+            .then(response => response.blob())
+            .then(blob => {
+                let a = document.createElement('a');
+                a.href = window.URL.createObjectURL(blob);
+                d3.csv(a.href).then(d => {
+                        console.log('data', d);
+                        data = d;
+                        bodytag = document.getElementsByTagName('body')[0];
+                        //load projects from first no to last no on the page
+                        load_projects(from_no, to_no);
+                        //load section with page numbers
+                        load_page_number(-1);
+                        //load footer
+                        load_footer();
+                    }
+                )
+            });
+    } else {
+        d3.csv(id_sheet_dict[document.title]).then(d => {
+                console.log('data', d);
+                data = d;
+                bodytag = document.getElementsByTagName('body')[0];
+                //load projects from first no to last no on the page
+                load_projects(from_no, to_no);
+                //load section with page numbers
+                load_page_number(-1);
+                //load footer
+                load_footer();
+            }
+        )
+    }
 };
-
-
 
 function load_projects(from_no, to_no) {
     console.log('loading items from ', from_no, 'to', to_no);
@@ -43,14 +56,14 @@ function load_projects(from_no, to_no) {
     let some_data = Object.values(data).slice(from_no, to_no + 1);
     for (let datum of some_data) {
         if (datum.Abstract !== undefined) {
-           load_project_entry(datum, temp, false)
+            load_project_entry(datum, temp, false)
         }
 
     }
 }
 
 function load_page_number(no) {
-    let total_items = Object.values(data).length-1;
+    let total_items = Object.values(data).length - 1;
     let total_pages = Math.ceil(total_items / els_per_page);
     console.log('total len of data', Object.values(data).length);
     console.log('changing page number to', no);
@@ -80,13 +93,13 @@ function load_page_number(no) {
         }
         let start = no * 6;
         let end = (no * 6) + 5;
-        end >= total_items ? end = (total_items-1) : end = end;
+        end >= total_items ? end = (total_items - 1) : end = end;
         let page_flip_div = document.createElement('div');
         page_flip_div.classList.add('row');
         page_flip_div.classList.add('no-gutters');
         page_flip_div.classList.add('mb-4');
         page_flip_div.classList.add('pb-4');
-        page_flip_div.style.borderTop = "1px solid" +"#9e9d9e";
+        page_flip_div.style.borderTop = "1px solid" + "#9e9d9e";
 
         page_flip_div.classList.add('fixed-bottom');
         page_flip_div.classList.add('bg-white');
@@ -110,7 +123,7 @@ function load_page_number(no) {
         center_col.classList.add('d-flex');
         center_col.classList.add('align-items-center');
         center_col.classList.add('justify-content-center');
-        center_col.innerHTML = "<p class='m-0 text-center pageno-text' > Page <span class='pageno-span'>" + (no + 1) + "</span> of <span class='pageno-span'>" + total_pages + "</span><br/>Items <span class='pageno-span'>" + (start+1) + " - " + (end+1) + "</span> of <span class='pageno-span'>" + total_items + "</span> </p>";
+        center_col.innerHTML = "<p class='m-0 text-center pageno-text' > Page <span class='pageno-span'>" + (no + 1) + "</span> of <span class='pageno-span'>" + total_pages + "</span><br/>Items <span class='pageno-span'>" + (start + 1) + " - " + (end + 1) + "</span> of <span class='pageno-span'>" + total_items + "</span> </p>";
 
         let next_col = document.createElement('div');
         next_col.classList.add('col');
@@ -119,7 +132,7 @@ function load_page_number(no) {
         next_col.classList.add('justify-content-start');
         // next_col.setAttribute('id', 'next_col');
         next_col.innerHTML = "<button id='next_btn' type='button' class='btn btn-light' onclick='load_page_number(" + (no + 1) + ")'> Next > </button>";
-        if (end===total_items-1) {
+        if (end === total_items - 1) {
             next_col.innerHTML = "<button id='next_btn' type='button' class='btn btn-light' onclick='load_page_number(" + (no + 1) + ")' disabled> Next > </button>";
         }
 
@@ -128,6 +141,7 @@ function load_page_number(no) {
         page_flip_div.appendChild(next_col);
         document.getElementsByTagName('body')[0].appendChild(page_flip_div);
     }
+
     // let div_content = "<a href='load_page_number("+(no-1)+")'> < Previous </a>"
 }
 

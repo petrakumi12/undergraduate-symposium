@@ -12,7 +12,7 @@ let dept_arr = [
     'Chemistry',
     // 'Civil Engineering',
     'Computer Science',
-    // 'Data Science',
+    'Interdisciplinary',
     'Economic Science',
     'Electrical and Computer Engineering',
     // 'Environmental and Sustainability Studies',

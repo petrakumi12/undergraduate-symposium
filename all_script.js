@@ -12,7 +12,7 @@ let id_sheet_dict = {
     // 'Chemistry and Biochemistry': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSe4Bu0fLf7ioNfZZoMJ01WaTwzGQi6oPTOquuPVJyavSPKqjFfEDoQOBfHNWXD3Dn4aLG0QfQU7vVq/pub?output=csv',
     'Civil Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRlZ384TboLmlLotzvKxl3EGkj0uWzDpChJzUXZy3VI5c-00HVQ_x51BcG_OvTm8le2_YPP4MNZKL3X/pub?output=csv',
     'Computer Science': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSLIJvVof0MSysslccKf7AMKEpo2zkyxgy-Rm9jATHJr8-O2nL-46hKXSJ4dvFamXCuzmfOqDgULjvn/pub?output=csv',
-    // 'Data Science': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR1MWHpX0Ggbkp5QQ1AlHUqrRorIId-hONj1tY7J77SBixM_7uQRaUg_e2ho5LocWY5Ol4xuDrr85Qi/pub?output=csv',
+    'Interdisciplinary': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRrgR14r8E1vAnGY1nD_LnDw6NXA8LuE8dcehLOqOE8Zci2nfWW3Z0oTUhRSKw1Mu-cCWCQZ_oDUlPN/pub?output=csv',
     'Economic Science': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTwkEdkyCUaYpo045wSBsup59maERXSk4c2jvQLIrRmkaFbJq-WXFOMjYZFYNAEpwZegtqurufMSOPM/pub?output=csv',
     'Electrical and Computer Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTqlj-IlZUisqynwxiAOZ2fNidPAZM7XmLjVhSC94XzM4-mg5axsf7nlpJTipZnzGqjWHRszjSXTiUI/pub?output=csv',
     // 'Environmental and Sustainability Studies': '',
@@ -23,9 +23,10 @@ let id_sheet_dict = {
     // 'International and Global Studies': '',
     // 'Liberal Arts and Engineering': '',
     'Management Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJEpb2tzsu3N_RZqYPC_BDlQlG30RPv7IsOA_88ww3S_CHq_0M-uWpign3MBzfIOWhBNMI_Cb0-NYn/pub?output=csv',
-    'Management Information Systems': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRrgR14r8E1vAnGY1nD_LnDw6NXA8LuE8dcehLOqOE8Zci2nfWW3Z0oTUhRSKw1Mu-cCWCQZ_oDUlPN/pub?output=csv',
+    'Management Information Systems': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-hrVJN55z-9JZvBAq-DWMIJ93ZOtj2D61sCFvNkhah4mQohHdDlG5qFZ7sJYxib7OOVRe0rcFhXq7/pub?output=csv',
     'Mathematical Sciences': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQEjczsrNQBUgaJ0XapXiOYi_hrfnZQIaOGWCq6K5rbmbeMBCRbsFD4kmJVBNWnL8RrIjfoLW8wKpQ5/pub?output=csv',
-    'Mechanical Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQtDLAg7cnFkz-lK89yNRZYpA1oywdW5f67eUrJ9pBBYvpgxs4KQ64ZV5RBcRj7FsAjHh8cT-DDU04d/pub?output=csv',
+    // 'Mechanical Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQtDLAg7cnFkz-lK89yNRZYpA1oywdW5f67eUrJ9pBBYvpgxs4KQ64ZV5RBcRj7FsAjHh8cT-DDU04d/pub?output=csv',
+    'Mechanical Engineering': '../csvs/Mechanical Engineering.csv',
     'Physics': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTanesTtG31pD-X08ZzfzT582Juapy3pvjD8s5xkHZBPI71VgJVSkjhmlNYXq1LDTXyawphoNCu3Yj4/pub?output=csv',
     'Professional Writing': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTGnAssxk58p5SE4xAoyhjU-rZeFV2rOreqqtWDvyGtEgQl-RC7jMPVJWRWVBz18m-8u3gnihBIBRXG/pub?output=csv',
     'Psychological Science': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjux6xw7DevO_uVafpszqbB_KrlqBorTDlbfRhKRL_stsBi7_QiKQwHKOcSVXEGgIWCL2U0-ScsaWW/pub?output=csv',
@@ -52,7 +53,7 @@ function load_header(first_page, add_sorting) {
     h2.addEventListener('mouseover', d => h2.style.color = "#ac2b37");
     h2.addEventListener('mouseout', d => h2.style.color = "#000000");
     if (!first_page) {
-        h2.addEventListener('click', d => window.location.href = "../index.html")
+        h2.addEventListener('click', d => window.location.href = "../index.html");
         h2.style.fontSize = '1.5em';
     }
 
