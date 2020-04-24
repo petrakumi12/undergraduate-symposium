@@ -158,10 +158,6 @@ function update_globals() {
 }
 
 window.onload = function () {
-    load_header(true, false);
-    load_title(document.title);
-    load_container_elements();
-    load_modal_elements();
     update_globals();
     loadResults().then(() => {
         updateProjectCount(allProjects.length);
@@ -194,62 +190,5 @@ async function loadResults() {
                 )
             });
     }
-}
-
-
-function load_container_elements() {
-    let inner_html = '<div class="container mb-b pb-2" id="myContainer"">' +
-        '<ul class="list-inline row d-flex align-items-center justify-content-center " style="width: 100%;">' +
-        '        <li class="col text-center">Projects indexed by:</li>' +
-        '        <li class="col text-center"><input type="checkbox" checked id="indexOnTitleCheckbox"> Title</li>' +
-        '        <li class="col text-center"><input type="checkbox" checked id="indexOnAuthorCheckbox"> Students</li>' +
-        '        <li class="col text-center"><input type="checkbox" checked id="indexOnAdvisorsCheckbox"> Advisors</li>' +
-        '        <li class="col text-center"><input type="checkbox" checked id="indexOnMajorCheckbox"> Major</li>' +
-        '</ul>' +
-        '' +
-        '        <form>' +
-        '            <div class="form-group">' +
-        '                <label for="searchInput">' +
-        '                    Filter text\n' +
-        '                    <span id="bookCountBadge" class="badge"></span>' +
-        '                </label>\n' +
-        '                <input class="form-control" type="search" id="searchInput" placeholder="Search..">' +
-        '            </div>' +
-        '        </form>' +
-        '' +
-        '        <table id="indexedProjectsTable" class="table table-striped table-condensed hidden">' +
-        '            <thead>' +
-        '            <tr>' +
-        '                <th>Title</th>' +
-        '                <th>Students</th>' +
-        '                <th>Advisors</th>' +
-        '                <th>Major</th>' +
-        '            </tr>' +
-        '            </thead>' +
-        '            <tbody>' +
-        '' +
-        '            </tbody>' +
-        '        </table>' +
-        '' +
-        '        <div id="loadingProgressBar" class="progress">\n' +
-        '            <div class="progress-bar progress-bar-striped active"\n' +
-        '                 role="progressbar"' +
-        '                 aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">' +
-        '                Loading projects...' +
-        '            </div>' +
-        '        </div>' +
-        '    </ul>' +
-        '</div>';
-    document.getElementsByTagName('body')[0].innerHTML+=inner_html;
-}
-
-function load_modal_elements() {
-
-    document.getElementsByTagName('body')[0].innerHTML += '<div id="myModal" class="modal">' +
-        '<div class="modal-content">\n' +
-        '        <span class="close">&times;</span>' +
-        '        <div id="project-info"></div>' +
-        '    </div>' +
-        '</div>';
 }
 

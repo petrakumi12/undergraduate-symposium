@@ -172,3 +172,13 @@ tr {
 #myContainer {
     font-size: 1.4em;
 }
+
+#loadingProgressBar {
+    width: 100%;
+    height: 2.1em
+}
+
+#searchInput {
+    height: 2.2em;
+    font-size: 1em;
+}
