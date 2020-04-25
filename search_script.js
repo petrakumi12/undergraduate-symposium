@@ -204,7 +204,7 @@ async function loadResults() {
 }
 
 async function loadFromCsv() {
-    await d3.csv('all_data.csv').then(d => {
+    await d3.csv('csvs/all_data.csv').then(d => {
             allProjects = allProjects.concat(d);
             console.log('all projects', allProjects)
         }

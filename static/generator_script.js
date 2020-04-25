@@ -51,7 +51,7 @@ function load_projects(from_no, to_no) {
     console.log('loading items from ', from_no, 'to', to_no);
     let temp = document.createElement('div');
     temp.classList.add('mb-5');
-    temp.classList.add('pb-5')
+    temp.classList.add('pb-5');
     temp.id = 'remove-me';
     let some_data = Object.values(data).slice(from_no, to_no + 1);
     for (let datum of some_data) {
