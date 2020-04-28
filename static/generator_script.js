@@ -119,11 +119,11 @@ function load_page_number(no) {
         prev_col.innerHTML = "<button id='prev_btn' type='button' class='btn btn-light' onclick='load_page_number(" + (no - 1) + ")' disabled> < Previous </button>";
 
         let center_col = document.createElement('div');
-        center_col.classList.add('col-2');
+        center_col.classList.add('col-3');
         center_col.classList.add('d-flex');
         center_col.classList.add('align-items-center');
         center_col.classList.add('justify-content-center');
-        center_col.innerHTML = "<p class='m-0 text-center pageno-text' > Page <span class='pageno-span'>" + (no + 1) + "</span> of <span class='pageno-span'>" + total_pages + "</span><br/>Items <span class='pageno-span'>" + (start + 1) + " - " + (end + 1) + "</span> of <span class='pageno-span'>" + total_items + "</span> </p>";
+        center_col.innerHTML = "<p class='m-0 text-center pageno-text' > Page <span class='pageno-span'>" + (no + 1) + "</span> of <span class='pageno-span'>" + total_pages + "</span><br/>Displaying <span class='pageno-span'>" + (start + 1) + " - " + (end + 1) + "</span> of <span class='pageno-span'>" + total_items + "</span> projects in this major</p>";
 
         let next_col = document.createElement('div');
         next_col.classList.add('col');
