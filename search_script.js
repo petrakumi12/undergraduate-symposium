@@ -15,7 +15,7 @@ window.onload = function () {
     loadFromCsv().then(() => {
         // download(allProjects, 'all_data.csv', 'type: ".csv"');
         updateProjectCount(allProjects.length);
-        var loadingProgressBar = document.getElementById('loadingProgressBar');
+        let loadingProgressBar = document.getElementById('loadingProgressBar');
         hideElement(loadingProgressBar);
         showElement(indexedProjectsTable);
         rebuildSearchIndex();
