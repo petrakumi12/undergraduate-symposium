@@ -65,7 +65,7 @@ function load_header(first_page, add_sorting) {
         img_col.style.height = '3.5em';
         img.setAttribute('src', '../wpi logo color - cropped.png');
         col.classList.add('col-6');
-        h2.addEventListener('click', d => window.location.href = "../index.html");
+        h2.addEventListener('click', d => window.location.href = "index_real.html");
         h2.style.fontSize = '1.5em';
     } else {
         col.classList.add('col-8');
