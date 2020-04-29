@@ -41,22 +41,38 @@ let temp_slides = '<iframe src="https://onedrive.live.com/embed?cid=79B772C1E135
 
 function load_header(first_page, add_sorting) {
     let header_div = document.createElement('div');
-    "row no-gutters mx-4 my-4 d-flex align-items-center justify-content-center".split(" ").map(e => header_div.classList.add(e));
+    "row no-gutters d-flex flex-row mx-4 my-4 d-flex align-items-center justify-content-center".split(" ").map(e => header_div.classList.add(e));
+
+    let img_col = document.createElement('div');
+    "col-1 d-flex align-items-center justify-content-center".split(" ").map(d => img_col.classList.add(d));
+
+    img_col.style.height = '4em';
+    let img = document.createElement('img');
+    img.setAttribute('src', 'wpi logo color - cropped.png');
+    img.style.height = '100%';
+    // img.style.width = '100%';
+    // img.style.objectFit =
 
     let col = document.createElement('div');
-    col.classList.add('col-10');
 
     let h2 = document.createElement('h2');
     h2.innerText = "WPI Virtual Undergraduate Research Showcase D 2020";
-    "d-flex align-items-center justify-content-center text-center".split(" ").map(e => h2.classList.add(e));
+    "d-flex align-items-center justify-content-center text-center mb-0".split(" ").map(e => h2.classList.add(e));
 
     h2.addEventListener('mouseover', d => h2.style.color = "#ac2b37");
     h2.addEventListener('mouseout', d => h2.style.color = "#000000");
     if (!first_page) {
+        img_col.style.height = '3.5em';
+        img.setAttribute('src', '../wpi logo color - cropped.png');
+        col.classList.add('col-6');
         h2.addEventListener('click', d => window.location.href = "../index.html");
         h2.style.fontSize = '1.5em';
+    } else {
+        col.classList.add('col-8');
     }
 
+    header_div.appendChild(img_col);
+    img_col.appendChild(img);
     header_div.appendChild(col);
     col.appendChild(h2);
     document.getElementsByTagName('body')[0].appendChild(header_div);
