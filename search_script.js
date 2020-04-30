@@ -198,7 +198,7 @@ async function loadResults() {
                 d3.csv(a.href).then(d => {
                         d.forEach(e => {
                             for(let el of Object.keys(e)){
-                                e[el] = e[el].replace(/"/g, '""');
+                                e[el] = e[el].replace(/"/g, "'");
                             }
                         });
                         allProjects = allProjects.concat(d);
@@ -241,3 +241,5 @@ function download(content, filename, type) {
     a.download = filename;
     a.click()
 }
+
+//"<div style='position: relative; padding-bottom: 56.25%; padding-top: 0px; height: 0; overflow: auto; -webkit-overflow-scrolling: touch;'><iframe id='ensembleEmbeddedContent_hIK-4HG0LkCwZHXSvpWFug' src='https://video.wpi.edu/hapi/v1/contents/e0be8284-b471-402e-b064-75d2be9585ba/plugin?embedAsThumbnail=false&displayTitle=false&startTime=0&autoPlay=false&hideControls=true&showCaptions=false&displaySharing=false&displayAnnotations=false&displayAttachments=false&displayLinks=false&displayEmbedCode=false&displayDownloadIcon=false&displayMetaData=false&displayCredits=false&audioPreviewImage=false&displayCaptionSearch=false&displayViewersReport=false&displayAxdxs=false' title='76-DeMaio' frameborder='0' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' scrolling='no' allowfullscreen></iframe></div>"

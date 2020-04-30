@@ -99,7 +99,7 @@ function add_search_button(is_firstpage) {
     let btn_col = document.createElement('div');
     "row no-gutters align-items-center justify-content-center mb-3".split(" ").map(d => btn_col.classList.add(d));
     document.getElementsByClassName('title-row')[0].classList.remove('mb-3');
-        document.getElementsByClassName('title-row')[0].classList.add('mb-1');
+    document.getElementsByClassName('title-row')[0].classList.add('mb-1');
 
 
     let btn = document.createElement('button');
@@ -149,16 +149,22 @@ function load_project_entry(datum, container, in_search) {
     datum.Video === 'TBA' || datum.Video === 'TBD' ? datum.Video = temp_video : datum.Video = datum.Video
     datum.Slides === 'TBA' || datum.Slides === 'TBD' ? datum.Slides = temp_slides : datum.Slides = datum.Slides
 
+    var parser = new DOMParser();
+    var htmlDoc = parser.parseFromString(datum.Video, 'text/html');
+    console.log('hi', htmlDoc.getElementsByTagName('iframe')[0].src);
+    datum.Video = htmlDoc.getElementsByTagName('iframe')[0].src;
 
     let new_row = document.createElement('div');
     "row no-gutters py-4 mx-3 new_row".split(" ").map(e => new_row.classList.add(e));
 
     let video_iframe_1 = '<div class="video-div"><iframe class="video" src="';
     let video_iframe_2 = '" frameborder="0" scrolling="no" allowfullscreen></iframe></div>';
+    // let video_iframe_search_1 = "<div class='video-div'><iframe class='video' src='";
+    // let video_iframe_search_2 = " frameborder='0' scrolling='no' allowfullscreen></iframe></div>";
 
     let col_1 = document.createElement('div');
     "col-lg-3 iframe-cols".split(" ").map(e => col_1.classList.add(e));
-    col_1.innerHTML = video_iframe_1 + remove_extras(datum.Video, 'video') + video_iframe_2;
+    col_1.innerHTML = video_iframe_1 + datum.Video + video_iframe_2;
 
 
     let col_2 = document.createElement('div');
@@ -204,10 +210,11 @@ function load_project_entry(datum, container, in_search) {
     // col_2.style.height = '100%';
     // col_3.style.height = '100%';
     // new_row.appendChild(document.createElement('hr'));
-    if (in_search){
-         document.getElementById('project-info').innerHTML = "";
-         document.getElementById('project-info').appendChild(new_row);
-    } else{
+    if (in_search) {
+        document.getElementById('project-info').innerHTML = "";
+        document.getElementById('project-info').appendChild(new_row);
+        // console.log('here', datum.Video, datum.Video.split("style=")[0].src);
+    } else {
         container.appendChild(new_row);
         document.getElementsByTagName('body')[0].appendChild(container);
     }
@@ -236,42 +243,42 @@ function remove_extras(iframe_tag, type) {
     return needed;
 }
 
-function add_sorting_elements(header_div){
+function add_sorting_elements(header_div) {
     console.log('adding sorting');
-        let sort_col = document.createElement('div');
-        sort_col.classList.add('col');
+    let sort_col = document.createElement('div');
+    sort_col.classList.add('col');
 
-        let sort_dropdown_div = document.createElement('div');
-        sort_dropdown_div.classList.add('dropdown');
+    let sort_dropdown_div = document.createElement('div');
+    sort_dropdown_div.classList.add('dropdown');
 
-        let dropdown_label = document.createElement('label');
-        dropdown_label.setAttribute('for', 'filter-dropdown');
-        dropdown_label.innerText = 'Sort By:';
+    let dropdown_label = document.createElement('label');
+    dropdown_label.setAttribute('for', 'filter-dropdown');
+    dropdown_label.innerText = 'Sort By:';
 
-        let dropdown_select = document.createElement('select');
-        dropdown_select.classList.add('custom-select');
-        dropdown_select.setAttribute('id', 'filter-dropdown');
-        dropdown_select.onchange = sort_data(dropdown_select);
+    let dropdown_select = document.createElement('select');
+    dropdown_select.classList.add('custom-select');
+    dropdown_select.setAttribute('id', 'filter-dropdown');
+    dropdown_select.onchange = sort_data(dropdown_select);
 
-        let firstoption = document.createElement('option');
-        firstoption.selected = true;
-        firstoption.innerText = 'Default';
-        firstoption.disabled = true;
+    let firstoption = document.createElement('option');
+    firstoption.selected = true;
+    firstoption.innerText = 'Default';
+    firstoption.disabled = true;
 
-        dropdown_select.appendChild(firstoption);
+    dropdown_select.appendChild(firstoption);
 
-        let option_vals = ['title', 'advisor', 'random'];
-        let option_text = ['Project Title', 'Advisor Name', 'Random'];
+    let option_vals = ['title', 'advisor', 'random'];
+    let option_text = ['Project Title', 'Advisor Name', 'Random'];
 
-        for (let i = 0; i < 3; i++) {
-            let otheroption = document.createElement('option');
-            otheroption.setAttribute('value', option_vals[i]);
-            otheroption.innerText = option_text[i];
-            dropdown_select.appendChild(otheroption)
-        }
+    for (let i = 0; i < 3; i++) {
+        let otheroption = document.createElement('option');
+        otheroption.setAttribute('value', option_vals[i]);
+        otheroption.innerText = option_text[i];
+        dropdown_select.appendChild(otheroption)
+    }
 
-        sort_col.appendChild(sort_dropdown_div);
-        sort_dropdown_div.appendChild(dropdown_label);
-        sort_dropdown_div.appendChild(dropdown_select);
-        header_div.appendChild(sort_col)
+    sort_col.appendChild(sort_dropdown_div);
+    sort_dropdown_div.appendChild(dropdown_label);
+    sort_dropdown_div.appendChild(dropdown_select);
+    header_div.appendChild(sort_col)
 }
