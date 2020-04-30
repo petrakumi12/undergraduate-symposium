@@ -190,11 +190,17 @@ function update_globals() {
 async function loadResults() {
     for (let dept in id_sheet_dict) {
         await fetch(id_sheet_dict[dept])
-            .then(response => response.blob())
+            .then(response =>  response.blob())
             .then(blob => {
+                console.log('resp', blob);
                 let a = document.createElement('a');
                 a.href = window.URL.createObjectURL(blob);
                 d3.csv(a.href).then(d => {
+                        d.forEach(e => {
+                            for(let el of Object.keys(e)){
+                                e[el] = e[el].replace(/"/g, '""');
+                            }
+                        });
                         allProjects = allProjects.concat(d);
                         console.log('all projects', allProjects)
                     }

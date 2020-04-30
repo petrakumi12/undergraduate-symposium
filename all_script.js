@@ -65,7 +65,7 @@ function load_header(first_page, add_sorting) {
         img_col.style.height = '3.5em';
         img.setAttribute('src', '../wpi logo color - cropped.png');
         col.classList.add('col-6');
-        h2.addEventListener('click', d => window.location.href = "index_real.html");
+        h2.addEventListener('click', d => window.location.href = "../index.html");
         h2.style.fontSize = '1.5em';
     } else {
         col.classList.add('col-8');
@@ -187,7 +187,7 @@ function load_project_entry(datum, container, in_search) {
 
     let col_3 = document.createElement('div');
     "col-lg-3 iframe-cols".split(" ").map(e => col_3.classList.add(e));
-    col_3.innerHTML = "<iframe src='" + remove_extras(String(datum.Slides), 'slides') + "' frameborder='0' allowfullscreen></iframe>\n";
+    col_3.innerHTML = String(datum.Slides);
 
     col_2.appendChild(title);
     col_2.appendChild(people);
