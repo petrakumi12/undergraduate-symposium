@@ -46,7 +46,7 @@ function load_header(first_page, add_sorting) {
     let img_col = document.createElement('div');
     "col-2 d-flex align-items-center justify-content-end".split(" ").map(d => img_col.classList.add(d));
     img_col.style.height = '4em';
-    img_col.style.marginLeft = '-5em';
+    img_col.style.marginLeft = '-4em';
 
     let img = document.createElement('img');
     img.setAttribute('src', 'wpi logo color - cropped.png');
