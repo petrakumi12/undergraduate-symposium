@@ -3,7 +3,8 @@ let data = "";
 let els_per_page = 6;
 let from_no = 0;
 let to_no = 5;
-
+let download = false;
+let from_csv = true;
 
 window.onload = function () {
     //load header
@@ -12,27 +13,36 @@ window.onload = function () {
     load_title(document.title);
     //load content
     add_search_button(false);
-    if (id_sheet_dict[document.title].includes('google')) {
-        fetch(id_sheet_dict[document.title])
+    if (!from_csv) {
+        let data_source = id_sheet_dict[document.title];
+        fetch(data_source)
             .then(response => response.blob())
             .then(blob => {
-                let a = document.createElement('a');
-                a.href = window.URL.createObjectURL(blob);
-                d3.csv(a.href).then(d => {
-                        console.log('data', d);
-                        data = d;
-                        bodytag = document.getElementsByTagName('body')[0];
-                        //load projects from first no to last no on the page
-                        load_projects(from_no, to_no);
-                        //load section with page numbers
-                        load_page_number(-1);
-                        //load footer
-                        load_footer();
+                    let a = document.createElement('a');
+                    a.href = window.URL.createObjectURL(blob);
+                    if (download) {
+                        a.download = document.title + '.csv';
+                        a.click()
+                    } else {
+                        d3.csv(a.href).then(d => {
+                                console.log('data', d);
+                                data = d;
+                                bodytag = document.getElementsByTagName('body')[0];
+                                //load projects from first no to last no on the page
+                                load_projects(from_no, to_no);
+                                //load section with page numbers
+                                load_page_number(-1);
+                                //load footer
+                                load_footer();
+                            }
+                        )
                     }
-                )
-            });
+                }
+            );
     } else {
-        d3.csv(id_sheet_dict[document.title]).then(d => {
+        console.log('loading from ', '../csvs/' + document.title + '.csv')
+        d3.csv('../csvs/' + document.title + '.csv').then(d => {
+                console.log('loading from csv');
                 console.log('data', d);
                 data = d;
                 bodytag = document.getElementsByTagName('body')[0];

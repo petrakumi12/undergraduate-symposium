@@ -1,5 +1,5 @@
 let id_sheet_dict = {
-    // 'Actuarial Mathematics',
+    'Actuarial Mathematics': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRhVZ3LoAeHWs9zEVL7Jx6v0u1TL1qXZa35dwCsUQoUWpwIabWR8hBywVInbuAzTd5mwv_wxgtdXkwZ/pub?output=csv',
     'Aerospace Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQhuvJF-g6QNE5O2VNxkhPr0X-ZfwSV6D9ZhUyXpilw0GKDEzS_3u7cfqsarT0eRXf9vzXA_hWdim4M/pub?output=csv',
     // 'Applied Physics',
     'Architectural Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRuWoUw40JLPbwUc1ZYLvwQPaLWg0No4US_HUkLEO5NJ60PrCecYFW431qBppHOJWyxPJhBmU_oSitq/pub?output=csv',
@@ -8,11 +8,11 @@ let id_sheet_dict = {
     'Biology and Biotechnology': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTL64e2xkpqnZKPJBeWWWeXE3x0T9fAG9APc0Y03vP8_ORc_aKT9T3poukU8boVTA-ywshTVRTudpDZ/pub?output=csv',
     'Biomedical Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQkiYlJ9_Dja7pthk45MqrWDNeubhTjWX-h4wHYj7ZdJ6sbivDv--fuCGrAVTWIZ9ArdBzUqQNze7ML/pub?output=csv',
     // 'Business': '',
-    'Chemistry': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTbk2pjr8PbSsMpEaME8Ijfom_qlIkV2RbX3rZp_xx_d8V3r4FBULyop1WohodQO8BzSUSiYeuvSzQz/pub?output=csv',
+    'Chemical Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTbk2pjr8PbSsMpEaME8Ijfom_qlIkV2RbX3rZp_xx_d8V3r4FBULyop1WohodQO8BzSUSiYeuvSzQz/pub?output=csv',
     // 'Chemistry and Biochemistry': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSe4Bu0fLf7ioNfZZoMJ01WaTwzGQi6oPTOquuPVJyavSPKqjFfEDoQOBfHNWXD3Dn4aLG0QfQU7vVq/pub?output=csv',
     'Civil Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRlZ384TboLmlLotzvKxl3EGkj0uWzDpChJzUXZy3VI5c-00HVQ_x51BcG_OvTm8le2_YPP4MNZKL3X/pub?output=csv',
     'Computer Science': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSLIJvVof0MSysslccKf7AMKEpo2zkyxgy-Rm9jATHJr8-O2nL-46hKXSJ4dvFamXCuzmfOqDgULjvn/pub?output=csv',
-    'Interdisciplinary': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRrgR14r8E1vAnGY1nD_LnDw6NXA8LuE8dcehLOqOE8Zci2nfWW3Z0oTUhRSKw1Mu-cCWCQZ_oDUlPN/pub?output=csv',
+    'Interdisciplinary Data Science': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRrgR14r8E1vAnGY1nD_LnDw6NXA8LuE8dcehLOqOE8Zci2nfWW3Z0oTUhRSKw1Mu-cCWCQZ_oDUlPN/pub?output=csv',
     'Economic Science': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTwkEdkyCUaYpo045wSBsup59maERXSk4c2jvQLIrRmkaFbJq-WXFOMjYZFYNAEpwZegtqurufMSOPM/pub?output=csv',
     'Electrical and Computer Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTqlj-IlZUisqynwxiAOZ2fNidPAZM7XmLjVhSC94XzM4-mg5axsf7nlpJTipZnzGqjWHRszjSXTiUI/pub?output=csv',
     // 'Environmental and Sustainability Studies': '',
@@ -44,26 +44,26 @@ function load_header(first_page, add_sorting) {
     "row no-gutters d-flex flex-row mx-4 my-4 d-flex align-items-center justify-content-center".split(" ").map(e => header_div.classList.add(e));
 
     let img_col = document.createElement('div');
-    "col-1 d-flex align-items-center justify-content-center".split(" ").map(d => img_col.classList.add(d));
-
+    "col-2 d-flex align-items-center justify-content-end".split(" ").map(d => img_col.classList.add(d));
     img_col.style.height = '4em';
+    img_col.style.marginLeft = '-5em';
+
     let img = document.createElement('img');
     img.setAttribute('src', 'wpi logo color - cropped.png');
     img.style.height = '100%';
-    // img.style.width = '100%';
-    // img.style.objectFit =
 
     let col = document.createElement('div');
 
     let h2 = document.createElement('h2');
     h2.innerText = "WPI Virtual Undergraduate Research Showcase D 2020";
-    "d-flex align-items-center justify-content-center text-center mb-0".split(" ").map(e => h2.classList.add(e));
+    "d-flex align-items-center justify-content-start mb-0 ml-4".split(" ").map(e => h2.classList.add(e));
 
     h2.addEventListener('mouseover', d => h2.style.color = "#ac2b37");
     h2.addEventListener('mouseout', d => h2.style.color = "#000000");
     if (!first_page) {
         img_col.style.height = '3.5em';
         img.setAttribute('src', '../wpi logo color - cropped.png');
+        img_col.style.marginLeft = '-5em';
         col.classList.add('col-6');
         h2.addEventListener('click', d => window.location.href = "../index.html");
         h2.style.fontSize = '1.5em';
@@ -97,13 +97,11 @@ function load_title(title) {
 
 function add_search_button(is_firstpage) {
     let btn_col = document.createElement('div');
-    "row no-gutters align-items-center justify-content-center mb-3".split(" ").map(d => btn_col.classList.add(d));
+    "row no-gutters align-items-center justify-content-around my-3".split(" ").map(d => btn_col.classList.add(d));
     document.getElementsByClassName('title-row')[0].classList.remove('mb-3');
     document.getElementsByClassName('title-row')[0].classList.add('mb-1');
 
-
     let btn = document.createElement('button');
-    "btn btn-sm btn-block btn-light".split(" ").map(d => btn.classList.add(d));
     btn.innerText = "Search all projects";
     let loc = is_firstpage ? 'search.html' : '../search.html';
     btn.onclick = function (e) {
@@ -111,6 +109,24 @@ function add_search_button(is_firstpage) {
         window.location.href = loc
     };
 
+    if (is_firstpage) {
+        "btn btn-sm btn-light".split(" ").map(d => btn.classList.add(d));
+        btn.style.width = '45%';
+
+        let other_btn = document.createElement('button');
+        "btn btn-sm btn-light".split(" ").map(d => other_btn.classList.add(d));
+        other_btn.style.width = '45%';
+        other_btn.innerHTML = 'A word from the Dean of Undergraduate Studies';
+        other_btn.setAttribute('data-toggle', "modal");
+        other_btn.setAttribute('data-target', "#exampleModalLong");
+        other_btn.onclick = function () {
+            showhide_card_text()
+        }
+
+        btn_col.appendChild(other_btn);
+    } else {
+        "btn btn-sm btn-block btn-light".split(" ").map(d => btn.classList.add(d));
+    }
     btn_col.appendChild(btn);
     document.getElementsByTagName('body')[0].appendChild(btn_col);
 }
@@ -221,27 +237,27 @@ function load_project_entry(datum, container, in_search) {
 
 }
 
-function remove_extras(iframe_tag, type) {
-    if (type === 'video') {
-        if (iframe_tag.includes('youtube')) {
-            type = 'frameborder'
-        }
-        else if (iframe_tag.includes('wpi')) {
-            type = 'title';
-        }
-    } else {
-        type = 'width';
-    }
-    needed = iframe_tag;
-    if (needed.includes("src=")) {
-        needed = iframe_tag.match(new RegExp('src=(.*)' + type))[0];
-        needed = needed.replace('src=', "");
-        needed = needed.replace(type, "");
-        needed = needed.replace(/\"/g, "");
-    }
-    // console.log('needed', needed);
-    return needed;
-}
+// function remove_extras(iframe_tag, type) {
+//     if (type === 'video') {
+//         if (iframe_tag.includes('youtube')) {
+//             type = 'frameborder'
+//         }
+//         else if (iframe_tag.includes('wpi')) {
+//             type = 'title';
+//         }
+//     } else {
+//         type = 'width';
+//     }
+//     needed = iframe_tag;
+//     if (needed.includes("src=")) {
+//         needed = iframe_tag.match(new RegExp('src=(.*)' + type))[0];
+//         needed = needed.replace('src=', "");
+//         needed = needed.replace(type, "");
+//         needed = needed.replace(/\"/g, "");
+//     }
+//     // console.log('needed', needed);
+//     return needed;
+// }
 
 function add_sorting_elements(header_div) {
     console.log('adding sorting');
@@ -281,4 +297,18 @@ function add_sorting_elements(header_div) {
     sort_dropdown_div.appendChild(dropdown_label);
     sort_dropdown_div.appendChild(dropdown_select);
     header_div.appendChild(sort_col)
+}
+
+
+function showhide_card_text(show) {
+    console.log('calleddd');
+    let card_texts = document.getElementsByClassName('centered');
+    for (let a_text of card_texts) {
+        if (show) {
+            a_text.style.zIndex = 10;
+        } else {
+            a_text.style.zIndex = -1;
+        }
+    }
+
 }

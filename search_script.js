@@ -98,7 +98,6 @@ var updateProjectTable = function (projects) {
             if (datum.Abstract !== undefined) {
                 load_project_entry(datum, null, true)
             }
-
         };
         indexedProjectsTBody.appendChild(tableRow);
     }
@@ -107,7 +106,7 @@ var updateProjectTable = function (projects) {
 /**
  * Update number of search results and table
  */
-var updateProjectCountAndTable = function () {
+let updateProjectCountAndTable = function () {
     updateProjectCount(results.length);
 
     if (results.length > 0) {
@@ -217,14 +216,6 @@ async function loadFromCsv() {
     );
 }
 
-// function download(content, fileName, contentType) {
-//     content = JSON.stringify(content);
-//     var a = document.createElement("a");
-//     var file = new Blob([content], {type: contentType});
-//     a.href = URL.createObjectURL(file);
-//     a.download = fileName;
-//     a.click();
-// }
 
 function download(content, filename, type) {
     const items = content;

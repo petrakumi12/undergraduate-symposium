@@ -1,44 +1,37 @@
 let dept_arr = [
-    // 'Actuarial Mathematics',
+    'Actuarial Mathematics',
     'Aerospace Engineering',
-    // 'Applied Physics',
     'Architectural Engineering',
     'Biochemistry',
     'Bioinformatics and Computational Biology',
     'Biology and Biotechnology',
     'Biomedical Engineering',
-    // 'Business',
-    // 'Chemical Engineering',
-    'Chemistry',
-    // 'Civil Engineering',
+    'Chemical Engineering',
+    'Civil Engineering',
     'Computer Science',
-    'Interdisciplinary',
+    'Interdisciplinary Data Science',
     'Economic Science',
     'Electrical and Computer Engineering',
-    // 'Environmental and Sustainability Studies',
     'Environmental Engineering',
     'Humanities and Arts',
     'Industrial Engineering',
     'Interactive Media and Game Development',
-    // 'International and Global Studies',
-    // 'Liberal Arts and Engineering',
     'Management Engineering',
     'Management Information Systems',
     'Mathematical Sciences',
     'Mechanical Engineering',
     'Physics',
-    'Psychological Science',
-    'Robotics Engineering',
     'Professional Writing',
-    // 'Society, Technology, and Policy',
-    // 'Z Sample'
+    'Psychological Science',
+    'Robotics Engineering'
 ];
 let small_screen = 700;
 
 window.onload = function () {
     //check if we're on mobile
     console.log('mobile?', is_mobile());
-    console.log('window width', window.innerWidth);
+    // console.log('window width', window.innerWidth);
+    //load header
     //load header
     load_header(true, false);
     //load title
@@ -74,7 +67,7 @@ window.onload = function () {
                     e.classList.add('col-md-3');
                     e.style.maxHeight = '100%'
                 }
-                for(let e of document.getElementsByTagName('img')){
+                for (let e of document.getElementsByTagName('img')) {
                     e.style.objectFit = 'cover';
                     e.style.zIndex = -10
                 }
@@ -173,11 +166,7 @@ function load_grid() {
 
         container_tag.appendChild(row);
     }
-    // setTimeout(function(){
-    //     AOS.init()
-    // },1000)
     load_footer();
-
 }
 
 function generate_page_name(input) {
