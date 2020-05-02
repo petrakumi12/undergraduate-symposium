@@ -15,7 +15,7 @@ let id_sheet_dict = {
     'Economic Science': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTwkEdkyCUaYpo045wSBsup59maERXSk4c2jvQLIrRmkaFbJq-WXFOMjYZFYNAEpwZegtqurufMSOPM/pub?output=csv',
     'Electrical and Computer Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTqlj-IlZUisqynwxiAOZ2fNidPAZM7XmLjVhSC94XzM4-mg5axsf7nlpJTipZnzGqjWHRszjSXTiUI/pub?output=csv',
     // 'Environmental and Sustainability Studies': '',
-    'Environmental Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTqlj-IlZUisqynwxiAOZ2fNidPAZM7XmLjVhSC94XzM4-mg5axsf7nlpJTipZnzGqjWHRszjSXTiUI/pub?output=csv',
+    'Environmental Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRS1uGb0ouBdi8LpbAzWoemqSrogzXERLkBsTuvvMNSUA9P23fhO8lE2WpCEHskLAqR_O6o-KgTEX_l/pub?output=csv',
     'Humanities and Arts': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQuZ2hkM2zJ2lEdVtTr2s7lIGph-QbJURqBdX5yOYY6X8ySvKTA-z4XeAHYN53Cs9hGICLOJor7aT9d/pub?output=csv',
     'Industrial Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJEpb2tzsu3N_RZqYPC_BDlQlG30RPv7IsOA_88ww3S_CHq_0M-uWpign3MBzfIOWhBNMI_Cb0-NYn/pub?output=csv',
     'Interactive Media and Game Development': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJEpb2tzsu3N_RZqYPC_BDlQlG30RPv7IsOA_88ww3S_CHq_0M-uWpign3MBzfIOWhBNMI_Cb0-NYn/pub?output=csv',
