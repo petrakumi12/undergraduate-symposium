@@ -121,7 +121,7 @@ function add_search_button(is_firstpage) {
         other_btn.setAttribute('data-target', "#exampleModalLong");
         other_btn.onclick = function () {
             showhide_card_text()
-        }
+        };
 
         btn_col.appendChild(other_btn);
     } else {
@@ -167,8 +167,8 @@ function load_project_entry(datum, container, in_search) {
 
     var parser = new DOMParser();
     var htmlDoc = parser.parseFromString(datum.Video, 'text/html');
-    console.log('hi', htmlDoc.getElementsByTagName('iframe')[0].src);
-    datum.Video = htmlDoc.getElementsByTagName('iframe')[0].src;
+    console.log('hi', htmlDoc);
+    let video = htmlDoc.getElementsByTagName('iframe')[0].src;
 
     let new_row = document.createElement('div');
     "row no-gutters py-4 mx-3 new_row".split(" ").map(e => new_row.classList.add(e));
@@ -180,7 +180,7 @@ function load_project_entry(datum, container, in_search) {
 
     let col_1 = document.createElement('div');
     "col-lg-3 iframe-cols".split(" ").map(e => col_1.classList.add(e));
-    col_1.innerHTML = video_iframe_1 + datum.Video + video_iframe_2;
+    col_1.innerHTML = video_iframe_1 + video + video_iframe_2;
 
 
     let col_2 = document.createElement('div');
