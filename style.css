@@ -75,7 +75,7 @@ iframe {
 
 .mobile-video-div {
     position: relative;
-    width: 75%;
+    width: 75vw;
     height: 100%;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
