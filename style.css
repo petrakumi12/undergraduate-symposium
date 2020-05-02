@@ -134,30 +134,22 @@ iframe {
 /*font-size: 80%;*/
 /*}*/
 
-@media only screen and (min-width: 600px) {
-    h5 {
-        font-size: 1.8em;
-    }
+/*@media only screen and (max-width: 600px) {*/
+    /*#next_btn #prev_btn {*/
+        /*font-size: 1.5em;*/
+    /*}*/
 
-    p {
-        font-size: 1.6em;
-    }
+    /*.footer-text {*/
+        /*font-size: 1.2em;*/
+        /*font-family: "Roboto", sans-serif;*/
+        /*font-weight: lighter;*/
+    /*}*/
 
-    #next_btn #prev_btn {
-        font-size: 1.3em;
-    }
-
-    .footer-text {
-        font-size: 0.8em;
-        font-family: "Roboto", sans-serif;
-        font-weight: lighter;
-    }
-
-    .pageno-text {
-        font-size: 1em;
-        color: #4a4a4a;
-    }
-}
+    /*.pageno-text {*/
+        /*font-size: 1.2em;*/
+        /*color: #4a4a4a;*/
+    /*}*/
+/*}*/
 
 mark {
     background-color: #d9edf7;
