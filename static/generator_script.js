@@ -3,7 +3,7 @@ let data = "";
 let els_per_page = 6;
 let from_no = 0;
 let to_no = 5;
-let from_csv = false;
+let from_csv = true;
 let download = true;
 
 window.onload = function () {
