@@ -207,7 +207,7 @@ function load_project_entry(datum, container, in_search) {
 
     // if (!is_mobile()) {
     let col_1 = document.createElement('div');
-    "col-lg-3 iframe-cols d-flex align-items-center justify-content-center".split(" ").map(e => col_1.classList.add(e));
+    "col-lg-3 iframe-cols".split(" ").map(e => col_1.classList.add(e));
     col_1.innerHTML = video;
 
     let col_2 = document.createElement('div');
@@ -220,6 +220,10 @@ function load_project_entry(datum, container, in_search) {
 
     if(is_mobile()){
         col_1.style.height = '25em';
+        "d-flex align-items-center justify-content-center".split(" ").map(d => {
+            col_1.classList.add(d);
+            col_3.classList.add(d);
+        })
         col_2.classList.add('my-4');
         col_2.style.fontSize = '1.3em';
         col_3.style.height = '25em';
