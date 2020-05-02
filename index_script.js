@@ -1,33 +1,8 @@
-let dept_arr = [
-    'Actuarial Mathematics',
-    'Aerospace Engineering',
-    'Architectural Engineering',
-    'Biochemistry',
-    'Bioinformatics and Computational Biology',
-    'Biology and Biotechnology',
-    'Biomedical Engineering',
-    'Chemical Engineering',
-    'Civil Engineering',
-    'Computer Science',
-    'Interdisciplinary Data Science',
-    'Economic Science',
-    'Electrical and Computer Engineering',
-    'Environmental Engineering',
-    'Humanities and Arts',
-    'Industrial Engineering',
-    'Interactive Media and Game Development',
-    'Management Engineering',
-    'Management Information Systems',
-    'Mathematical Sciences',
-    'Mechanical Engineering',
-    'Physics',
-    'Professional Writing',
-    'Psychological Science',
-    'Robotics Engineering'
-];
+let dept_arr = [];
 let small_screen = 700;
 
 window.onload = function () {
+    dept_arr = [... Object.keys(id_sheet_dict)];
     //check if we're on mobile
     console.log('mobile?', is_mobile());
     // console.log('window width', window.innerWidth);
