@@ -178,10 +178,10 @@ function load_project_entry(datum, container, in_search) {
     "row no-gutters py-4 mx-3 new_row".split(" ").map(e => new_row.classList.add(e));
 
     let video_iframe_1 = '<div class="video-div"><iframe class="video" src="';
-    let video_iframe_2 = '" frameborder="0" scrolling="no" allowfullscreen></iframe></div>';
+    let video_iframe_2 = '" frameborder="0" scrolling="no" allowfullscreen=""></iframe></div>';
 
-    if(is_mobile()){
-        video = '<div class="mobile-video-div"><iframe class="video" style="height: 100%" src="'+video+video_iframe_2;
+    if (is_mobile()) {
+        video = '<div class="mobile-video-div"><iframe class="video" style="height: 100%" src="' + video + video_iframe_2;
     } else {
         video = video_iframe_1 + video + video_iframe_2;
     }
@@ -205,53 +205,90 @@ function load_project_entry(datum, container, in_search) {
     abstract.innerHTML = "<p class='abstract-text'>" + datum.Abstract + "</p>";
 
 
-    // if (!is_mobile()) {
-    let col_1 = document.createElement('div');
-    "col-lg-3 iframe-cols".split(" ").map(e => col_1.classList.add(e));
-    col_1.innerHTML = video;
+    if (!is_mobile()) {
+        let col_1 = document.createElement('div');
+        "col-lg-3 iframe-cols".split(" ").map(e => col_1.classList.add(e));
+        col_1.innerHTML = video;
 
-    let col_2 = document.createElement('div');
-    "col-lg-6 px-4 text-cols".split(" ").map(e => col_2.classList.add(e));
-    // col_2.style.fontSize = '0.9em';
+        let col_2 = document.createElement('div');
+        "col-lg-6 px-4 text-cols".split(" ").map(e => col_2.classList.add(e));
+        // col_2.style.fontSize = '0.9em';
 
-    let col_3 = document.createElement('div');
-    "col-lg-3 iframe-cols d-flex align-items-center justify-content-center".split(" ").map(e => col_3.classList.add(e));
-    col_3.innerHTML = String(datum.Slides);
+        let col_3 = document.createElement('div');
+        "col-lg-3 iframe-cols d-flex align-items-center justify-content-center".split(" ").map(e => col_3.classList.add(e));
+        col_3.innerHTML = String(datum.Slides);
 
-    if(is_mobile()){
-        col_1.style.height = '25em';
-        "d-flex align-items-center justify-content-center".split(" ").map(d => {
-            col_1.classList.add(d);
-            col_3.classList.add(d);
-        })
-        col_2.classList.add('my-4');
-        col_2.style.fontSize = '1.3em';
-        col_3.style.height = '25em';
+        //V1 of mobile
+        //
+        // if(is_mobile()){
+        //     col_1.style.height = '25em';
+        //     "d-flex align-items-center justify-content-center".split(" ").map(d => {
+        //         col_1.classList.add(d);
+        //         col_3.classList.add(d);
+        //     });
+        //     col_2.classList.add('my-4');
+        //     col_2.style.fontSize = '1.3em';
+        //     col_3.style.height = '25em';
+        // }
+
+        col_2.appendChild(title);
+        col_2.appendChild(people);
+        col_2.appendChild(abstract);
+
+        new_row.appendChild(col_1);
+        new_row.appendChild(col_2);
+        new_row.appendChild(col_3);
+
+    } else {
+        let col_1 = document.createElement('div');
+        "col-12 h-10 d-flex align-items-center justify-content-center".split(" ").map(e => col_1.classList.add(e));
+
+        let div_container = document.createElement('div');
+        "collapse".split(" ").map(d => div_container.classList.add(d));
+        div_container.setAttribute('id', 'collapse' + datum['Presentation Number']);
+
+        let div = document.createElement('div');
+        "card card-body iframe-cols d-flex align-items-center justify-content-center".split(" ").map(d => div.classList.add(d));
+        div.style.width = '97vw';
+        div.style.height = '25em';
+        div_container.appendChild(div);
+        let slides_or_video = {'Slides': String(datum.Slides), 'Video': video};
+        for (let item of Object.keys(slides_or_video)) {
+            let col = document.createElement('div');
+            "col-6 px-4 pb-3 d-flex align-items-center justify-content-center".split(" ").map(e => col.classList.add(e));
+            let btn = document.createElement('button');
+            "btn btn-secondary".split(" ").map(d => btn.classList.add(d));
+            btn.style.width = '100%';
+            btn.setAttribute('data-toggle', 'collapse');
+            btn.setAttribute('data-target', '#collapse' + datum['Presentation Number']);
+            btn.setAttribute('role', 'button');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.setAttribute('aria-controls', 'collapse' + datum['Presentation Number']);
+            btn.innerText = item;
+            btn.onclick = function (e) {
+                console.log('div inner', div.innerHTML);
+                console.log('slides or vid', slides_or_video[item]);
+                if (String(div.innerHTML)[5] !== String(slides_or_video[item])[5] && div.innerHTML !== "" && $(btn).attr("aria-expanded")) {
+                    e.stopPropagation()
+                }
+                div.innerHTML = slides_or_video[item]
+            };
+            col.appendChild(btn);
+            col_1.appendChild(col)
+        }
+
+        let col_2 = document.createElement('div');
+        "col-lg-6 px-4 text-cols".split(" ").map(e => col_2.classList.add(e));
+        col_2.appendChild(title);
+        col_2.appendChild(people);
+        col_2.appendChild(abstract);
+
+        new_row.appendChild(col_2);
+        new_row.appendChild(col_1);
+        new_row.appendChild(div_container);
+
+
     }
-
-    col_2.appendChild(title);
-    col_2.appendChild(people);
-    col_2.appendChild(abstract);
-
-    new_row.appendChild(col_1);
-    new_row.appendChild(col_2);
-    new_row.appendChild(col_3);
-    // } else {
-    // let col_1 = document.createElement('div');
-    // "col-6".split(" ").map(e => col_1.classList.add(e));
-    // let col_2 = document.createElement('div');
-    // "col-6".split(" ").map(e => col_1.classList.add(e));
-    //
-    // let btn_1 = document.createElement('button');
-    // "btn btn-white".split(" ").map(d => btn_1.classList.add(d));
-    // btn_1.setAttribute('data-toggle', 'collapse');
-    // btn_1.setAttribute('data-target', '#collapse'+datum['Presentation Number'])
-    // btn_1.setAttribute('role', 'button');
-    // btn_1.setAttribute('aria-expanded', 'false')
-    // btn_1.setAttribute('aria-controls', 'collapse'+datum['Presentation Number'])
-
-
-    // }
 
 
     if (in_search) {
