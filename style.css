@@ -25,6 +25,9 @@ iframe {
     z-index: -1;
 }
 .modal-body {
+    position: relative;
+}
+.modal-content {
     z-index: 50 !important;
 }
 
@@ -40,11 +43,12 @@ iframe {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: 1;
     color: whitesmoke;
 }
 
 .darker {
+    position: relative;
     filter: brightness(50%);
     z-index: -1;
 }

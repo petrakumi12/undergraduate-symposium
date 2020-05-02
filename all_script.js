@@ -117,13 +117,18 @@ function add_search_button(is_firstpage) {
         "btn btn-sm btn-light".split(" ").map(d => other_btn.classList.add(d));
         other_btn.style.width = '45%';
         other_btn.innerHTML = 'A word from the Dean of Undergraduate Studies';
+        other_btn.setAttribute('id', 'word-btn');
         other_btn.setAttribute('data-toggle', "modal");
         other_btn.setAttribute('data-target', "#exampleModalLong");
-        other_btn.onclick = function () {
+        $(document).on('show.bs.modal','#exampleModalLong', function () {
             showhide_card_text()
-        };
+        });
+        $(document).on('hide.bs.modal','#exampleModalLong', function () {
+            showhide_card_text(true)
+        });
 
         btn_col.appendChild(other_btn);
+
     } else {
         "btn btn-sm btn-block btn-light".split(" ").map(d => btn.classList.add(d));
     }
@@ -182,11 +187,9 @@ function load_project_entry(datum, container, in_search) {
     "col-lg-3 iframe-cols".split(" ").map(e => col_1.classList.add(e));
     col_1.innerHTML = video_iframe_1 + video + video_iframe_2;
 
-
     let col_2 = document.createElement('div');
     "col-lg-6 px-4 text-cols".split(" ").map(e => col_2.classList.add(e));
     // col_2.style.fontSize = '0.9em';
-
 
     let title = document.createElement('div');
     title.classList.add('row');
@@ -219,13 +222,6 @@ function load_project_entry(datum, container, in_search) {
     new_row.appendChild(col_2);
     new_row.appendChild(col_3);
 
-    // col_1.classList.add('h-100');
-    // col_2.classList.add('h-100');
-    // col_3.classList.add('h-100');
-    // col_1.style.height = '100%';
-    // col_2.style.height = '100%';
-    // col_3.style.height = '100%';
-    // new_row.appendChild(document.createElement('hr'));
     if (in_search) {
         document.getElementById('project-info').innerHTML = "";
         document.getElementById('project-info').appendChild(new_row);
@@ -236,28 +232,6 @@ function load_project_entry(datum, container, in_search) {
     }
 
 }
-
-// function remove_extras(iframe_tag, type) {
-//     if (type === 'video') {
-//         if (iframe_tag.includes('youtube')) {
-//             type = 'frameborder'
-//         }
-//         else if (iframe_tag.includes('wpi')) {
-//             type = 'title';
-//         }
-//     } else {
-//         type = 'width';
-//     }
-//     needed = iframe_tag;
-//     if (needed.includes("src=")) {
-//         needed = iframe_tag.match(new RegExp('src=(.*)' + type))[0];
-//         needed = needed.replace('src=', "");
-//         needed = needed.replace(type, "");
-//         needed = needed.replace(/\"/g, "");
-//     }
-//     // console.log('needed', needed);
-//     return needed;
-// }
 
 function add_sorting_elements(header_div) {
     console.log('adding sorting');
@@ -310,5 +284,4 @@ function showhide_card_text(show) {
             a_text.style.zIndex = -1;
         }
     }
-
 }

@@ -2,6 +2,8 @@ let dept_arr = [];
 let small_screen = 700;
 
 window.onload = function () {
+    // let body_html = document.body.innerHTML;
+    // document.body.innerHTML = "";
     dept_arr = [... Object.keys(id_sheet_dict)];
     //check if we're on mobile
     console.log('mobile?', is_mobile());
@@ -49,6 +51,7 @@ window.onload = function () {
             }
         }
     }
+    // document.getElementsByTagName('body')[0].innerHTML += body_html
 };
 
 function add_content_div() {
@@ -78,10 +81,8 @@ function load_grid() {
             let idx = (i * 4) + j;
             if (idx < dept_arr.length) {
                 let col = document.createElement('div');
-                // col.classList.add('px-1');
                 col.classList.add('text-center');
                 col.classList.add('content-col');
-                // col.style.height = '100%';
                 col.style.width = '100%';
 
                 let title_row = document.createElement('div');
@@ -91,7 +92,7 @@ function load_grid() {
                     console.log('loading mobile layout');
                     col.classList.add('col-12');
                     if (is_mobile()) {
-                        title_row.innerHTML = "<h3 class='card-text' id='h-" + String(idx) + "' style='font-size: 2em'>" + dept_arr[idx] + "</h3>";
+                        title_row.innerHTML = "<h3 class='card-text' id='h-" + String(idx) + "' style='font-size: 2em' onclick='onclick_fcn'>" + dept_arr[idx] + "</h3>";
                     } else {
                         title_row.innerHTML = "<h3 class='card-text' id='h-" + String(idx) + "' style='font-size: 1.3em'>" + dept_arr[idx] + "</h3>";
                     }
@@ -107,7 +108,8 @@ function load_grid() {
                 button.classList.add('p-0');
                 button.style.height = '100%';
                 button.style.width = '100%';
-                button.onclick = d => window.location.href = generate_page_name(dept_arr[idx]);
+                console.log('got here');
+                button.addEventListener('click', e => {console.log('HIIII');window.location.href = generate_page_name(dept_arr[idx])});
 
                 // title_row.style.fontSize = '0.5em';
 
@@ -125,8 +127,6 @@ function load_grid() {
                 button.appendChild(img);
 
                 button.addEventListener('mouseover', function () {
-                    // document.getElementById('i-'+String(idx)).style.transition = 'transform 1.3s';
-                    // document.getElementById('i-'+String(idx)).style.transform = 'scale (1.5)';
                     document.getElementById('h-' + String(idx)).style.transition = 'font-size 0.3s';
                     document.getElementById('h-' + String(idx)).style.fontSize = '1.4em';
                 });
