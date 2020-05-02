@@ -44,9 +44,9 @@ function load_header(first_page, add_sorting) {
     "row no-gutters d-flex flex-row mx-4 my-4 d-flex align-items-center justify-content-center".split(" ").map(e => header_div.classList.add(e));
 
     let img_col = document.createElement('div');
-    "col-2 d-flex align-items-center justify-content-end".split(" ").map(d => img_col.classList.add(d));
+    "col-12 d-flex align-items-center justify-content-center mb-3".split(" ").map(d => img_col.classList.add(d));
     img_col.style.height = '4em';
-    img_col.style.marginLeft = '-4em';
+    img_col.style.cursor = 'pointer';
 
     let img = document.createElement('img');
     img.setAttribute('src', 'wpi logo color - cropped.png');
@@ -63,9 +63,10 @@ function load_header(first_page, add_sorting) {
     if (!first_page) {
         img_col.style.height = '3.5em';
         img.setAttribute('src', '../wpi logo color - cropped.png');
-        img_col.style.marginLeft = '-5em';
-        col.classList.add('col-6');
+        // img_col.style.marginLeft = '-5em';
+        // col.classList.add('col-12');
         h2.addEventListener('click', d => window.location.href = "../index.html");
+        img_col.addEventListener('click', d => window.location.href = "../index.html");
         h2.style.fontSize = '1.5em';
     } else {
         col.classList.add('col-8');
@@ -116,7 +117,7 @@ function add_search_button(is_firstpage) {
         let other_btn = document.createElement('button');
         "btn btn-sm btn-light".split(" ").map(d => other_btn.classList.add(d));
         other_btn.style.width = '45%';
-        other_btn.innerHTML = 'A word from the Dean of Undergraduate Studies';
+        other_btn.innerHTML = 'A Message from the Office of Undergraduate Research';
         other_btn.setAttribute('id', 'word-btn');
         other_btn.setAttribute('data-toggle', "modal");
         other_btn.setAttribute('data-target', "#exampleModalLong");
@@ -147,7 +148,7 @@ function load_footer() {
 
     let adiv_1 = document.createElement('div');
     adiv_1.style.opacity = 0.9;
-    adiv_1.innerHTML = 'Office of Undergraduate Research | Worcester Polytechnic Institute  | <a class="text-white" href="https://www.wpi.edu"> <u>wpi.edu</u></a> '
+    adiv_1.innerHTML = '<a class="text-white" href=" https://www.wpi.edu/research/student/undergraduate"><u>Office of Undergraduate Research</u></a> | <a class="text-white" href="https://www.wpi.edu"> <u>Worcester Polytechnic Institute</u></a> '
     // '<br/> Organized by: Prof. Suzanne L. Weekes, Associate Dean of Undergraduate Studies | Ally M. Salvino \'22 |  Petra Kumi \'20';
     "col footer-copyright text-center text-white pl-3 footer-text"
         .split(" ")
