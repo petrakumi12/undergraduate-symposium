@@ -150,7 +150,3 @@ function generate_page_name(input) {
     input = input.replace(/,/g, "");
     return 'dept-pages/' + input.toLowerCase() + '.html';
 }
-
-function is_mobile() {
-    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-};

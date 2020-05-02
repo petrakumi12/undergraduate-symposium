@@ -120,10 +120,10 @@ function add_search_button(is_firstpage) {
         other_btn.setAttribute('id', 'word-btn');
         other_btn.setAttribute('data-toggle', "modal");
         other_btn.setAttribute('data-target', "#exampleModalLong");
-        $(document).on('show.bs.modal','#exampleModalLong', function () {
+        $(document).on('show.bs.modal', '#exampleModalLong', function () {
             showhide_card_text()
         });
-        $(document).on('hide.bs.modal','#exampleModalLong', function () {
+        $(document).on('hide.bs.modal', '#exampleModalLong', function () {
             showhide_card_text(true)
         });
 
@@ -172,7 +172,6 @@ function load_project_entry(datum, container, in_search) {
 
     var parser = new DOMParser();
     var htmlDoc = parser.parseFromString(datum.Video, 'text/html');
-    console.log('hi', htmlDoc);
     let video = htmlDoc.getElementsByTagName('iframe')[0].src;
 
     let new_row = document.createElement('div');
@@ -180,16 +179,12 @@ function load_project_entry(datum, container, in_search) {
 
     let video_iframe_1 = '<div class="video-div"><iframe class="video" src="';
     let video_iframe_2 = '" frameborder="0" scrolling="no" allowfullscreen></iframe></div>';
-    // let video_iframe_search_1 = "<div class='video-div'><iframe class='video' src='";
-    // let video_iframe_search_2 = " frameborder='0' scrolling='no' allowfullscreen></iframe></div>";
 
-    let col_1 = document.createElement('div');
-    "col-lg-3 iframe-cols".split(" ").map(e => col_1.classList.add(e));
-    col_1.innerHTML = video_iframe_1 + video + video_iframe_2;
-
-    let col_2 = document.createElement('div');
-    "col-lg-6 px-4 text-cols".split(" ").map(e => col_2.classList.add(e));
-    // col_2.style.fontSize = '0.9em';
+    if(is_mobile()){
+        video = '<div class="mobile-video-div"><iframe class="video" style="height: 100%" src="'+video+video_iframe_2;
+    } else {
+        video = video_iframe_1 + video + video_iframe_2;
+    }
 
     let title = document.createElement('div');
     title.classList.add('row');
@@ -210,9 +205,25 @@ function load_project_entry(datum, container, in_search) {
     abstract.innerHTML = "<p class='abstract-text'>" + datum.Abstract + "</p>";
 
 
+    // if (!is_mobile()) {
+    let col_1 = document.createElement('div');
+    "col-lg-3 iframe-cols d-flex align-items-center justify-content-center".split(" ").map(e => col_1.classList.add(e));
+    col_1.innerHTML = video;
+
+    let col_2 = document.createElement('div');
+    "col-lg-6 px-4 text-cols".split(" ").map(e => col_2.classList.add(e));
+    // col_2.style.fontSize = '0.9em';
+
     let col_3 = document.createElement('div');
-    "col-lg-3 iframe-cols".split(" ").map(e => col_3.classList.add(e));
+    "col-lg-3 iframe-cols d-flex align-items-center justify-content-center".split(" ").map(e => col_3.classList.add(e));
     col_3.innerHTML = String(datum.Slides);
+
+    if(is_mobile()){
+        col_1.style.height = '25em';
+        col_2.classList.add('my-4');
+        col_2.style.fontSize = '1.3em';
+        col_3.style.height = '25em';
+    }
 
     col_2.appendChild(title);
     col_2.appendChild(people);
@@ -221,6 +232,23 @@ function load_project_entry(datum, container, in_search) {
     new_row.appendChild(col_1);
     new_row.appendChild(col_2);
     new_row.appendChild(col_3);
+    // } else {
+    // let col_1 = document.createElement('div');
+    // "col-6".split(" ").map(e => col_1.classList.add(e));
+    // let col_2 = document.createElement('div');
+    // "col-6".split(" ").map(e => col_1.classList.add(e));
+    //
+    // let btn_1 = document.createElement('button');
+    // "btn btn-white".split(" ").map(d => btn_1.classList.add(d));
+    // btn_1.setAttribute('data-toggle', 'collapse');
+    // btn_1.setAttribute('data-target', '#collapse'+datum['Presentation Number'])
+    // btn_1.setAttribute('role', 'button');
+    // btn_1.setAttribute('aria-expanded', 'false')
+    // btn_1.setAttribute('aria-controls', 'collapse'+datum['Presentation Number'])
+
+
+    // }
+
 
     if (in_search) {
         document.getElementById('project-info').innerHTML = "";
@@ -284,4 +312,9 @@ function showhide_card_text(show) {
             a_text.style.zIndex = -1;
         }
     }
+}
+
+
+function is_mobile() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 }
