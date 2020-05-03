@@ -156,7 +156,7 @@ function load_footer() {
 
     let adiv_2 = document.createElement('div');
     adiv_2.style.opacity = 0.7;
-    adiv_2.innerHTML = 'Organizers: &nbsp &nbsp Prof. Suzanne L. Weekes, Associate Dean of Undergraduate Studies &nbsp &nbsp Ally M. Salvino \'22 &nbsp &nbsp Petra Kumi \'20';
+    adiv_2.innerHTML = 'Prof. Suzanne L. Weekes, Associate Dean of Undergraduate Studies &nbsp &nbsp Ally M. Salvino \'22 &nbsp &nbsp Petra Kumi \'20';
     "col footer-copyright text-center text-white pr-3 footer-text"
         .split(" ")
         .map(e => adiv_2.classList.add(e));
