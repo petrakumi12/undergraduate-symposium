@@ -168,7 +168,6 @@ function load_footer() {
 
 
 function load_project_entry(datum, container, in_search) {
-    console.log('loading project')
     datum.Video === 'TBA' || datum.Video === 'TBD' ? datum.Video = temp_video : datum.Video = datum.Video
     datum.Slides === 'TBA' || datum.Slides === 'TBD' ? datum.Slides = temp_slides : datum.Slides = datum.Slides
 
@@ -251,7 +250,6 @@ function load_project_entry(datum, container, in_search) {
 }
 
 function add_sorting_elements(header_div) {
-    console.log('adding sorting');
     let sort_col = document.createElement('div');
     sort_col.classList.add('col');
 
@@ -292,7 +290,6 @@ function add_sorting_elements(header_div) {
 
 
 function showhide_card_text(show) {
-    console.log('calleddd');
     let card_texts = document.getElementsByClassName('centered');
     for (let a_text of card_texts) {
         if (show) {

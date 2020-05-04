@@ -6,9 +6,8 @@ window.onload = function () {
     // document.body.innerHTML = "";
     dept_arr = [... Object.keys(id_sheet_dict)];
     //check if we're on mobile
-    console.log('mobile?', is_mobile());
+    // console.log('mobile?', is_mobile());
     // console.log('window width', window.innerWidth);
-    //load header
     //load header
     load_header(true, false);
     //load title
@@ -21,7 +20,6 @@ window.onload = function () {
     //add resize window listener if on pc to change layout on small screens
     if (!is_mobile()) {
         window.onresize = function () {
-            console.log('window width', window.innerWidth);
             if (window.innerWidth < small_screen) {
                 console.log('window resized to less than 980');
                 for (let e of document.getElementsByClassName('content-row')) {
@@ -34,7 +32,6 @@ window.onload = function () {
 
             }
             else {
-                console.log('window resized to over 980');
                 for (let e of document.getElementsByClassName('content-row')) {
                     e.style.height = '25vh';
                     // e.style.maxHeight = '25vh'

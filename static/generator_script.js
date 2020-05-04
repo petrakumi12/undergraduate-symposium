@@ -26,7 +26,6 @@ window.onload = function () {
                         a.click()
                     } else {
                         d3.csv(a.href).then(d => {
-                                console.log('data', d);
                                 data = d;
                                 bodytag = document.getElementsByTagName('body')[0];
                                 //load projects from first no to last no on the page
@@ -41,10 +40,7 @@ window.onload = function () {
                 }
             );
     } else {
-        console.log('loading from ', '../csvs/' + document.title + '.csv')
         d3.csv('../csvs/' + document.title + '.csv').then(d => {
-                console.log('loading from csv');
-                console.log('data', d);
                 data = d;
                 bodytag = document.getElementsByTagName('body')[0];
                 //load projects from first no to last no on the page
@@ -59,7 +55,6 @@ window.onload = function () {
 };
 
 function load_projects(from_no, to_no) {
-    console.log('loading items from ', from_no, 'to', to_no);
     let temp = document.createElement('div');
     temp.classList.add('mb-5');
     temp.classList.add('pb-5');
@@ -76,8 +71,6 @@ function load_projects(from_no, to_no) {
 function load_page_number(no) {
     let total_items = Object.values(data).length - 1;
     let total_pages = Math.ceil(total_items / els_per_page);
-    console.log('total len of data', Object.values(data).length);
-    console.log('changing page number to', no);
     if (no === -1) {
         load_baseline()
     } else {
@@ -158,18 +151,14 @@ function load_page_number(no) {
 
 function sort_data(type) {
 
-    console.log('we here', type);
     switch (type.value) {
         case 'title':
-            console.log('case title');
             data = data.slice().sort((a, b) => d3.ascending(a.Title, b.Title));
             break;
         case 'advisor':
-            console.log('case advisor');
             data = data.slice().sort((a, b) => d3.ascending(a.Advisor, b.Advisor));
             break;
         case 'random':
-            console.log('case random');
             data = d3.shuffle(data);
             break;
     }

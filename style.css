@@ -134,21 +134,44 @@ iframe {
 /*font-size: 80%;*/
 /*}*/
 
-/*@media only screen and (max-width: 600px) {*/
-    /*#next_btn #prev_btn {*/
-        /*font-size: 1.5em;*/
+/*@media (min-width: 40em) {*/
+    /*h2 {*/
+        /*font-size: 3em !important;*/
     /*}*/
 
+    /*h3 {*/
+        /*font-size: 2.5em !important;*/
+    /*}*/
+    /*h5 {*/
+        /*font-size: 2em !important;*/
+    /*}*/
+
+    /*p {*/
+        /*font-size: 1.5em !important;*/
+    /*}*/
+
+    /*button {*/
+        /*font-size: 2em !important;*/
+    /*}*/
     /*.footer-text {*/
-        /*font-size: 1.2em;*/
-        /*font-family: "Roboto", sans-serif;*/
-        /*font-weight: lighter;*/
+            /*font-size: 1.27em !important;*/
     /*}*/
+/*}*/
 
-    /*.pageno-text {*/
-        /*font-size: 1.2em;*/
-        /*color: #4a4a4a;*/
-    /*}*/
+/*#next_btn #prev_btn {*/
+/*font-size: 1.5em;*/
+/*}*/
+
+/*.footer-text {*/
+/*font-size: 1.2em;*/
+/*font-family: "Roboto", sans-serif;*/
+/*font-weight: lighter;*/
+/*}*/
+
+/*.pageno-text {*/
+/*font-size: 1.2em;*/
+/*color: #4a4a4a;*/
+/*}*/
 /*}*/
 
 mark {

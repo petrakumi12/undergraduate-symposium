@@ -191,7 +191,6 @@ async function loadResults() {
         await fetch(id_sheet_dict[dept])
             .then(response =>  response.blob())
             .then(blob => {
-                console.log('resp', blob);
                 let a = document.createElement('a');
                 a.href = window.URL.createObjectURL(blob);
                 d3.csv(a.href).then(d => {
@@ -201,7 +200,6 @@ async function loadResults() {
                             }
                         });
                         allProjects = allProjects.concat(d);
-                        console.log('all projects', allProjects)
                     }
                 )
             });
@@ -211,7 +209,6 @@ async function loadResults() {
 async function loadFromCsv() {
     await d3.csv('csvs/all_data.csv').then(d => {
             allProjects = allProjects.concat(d);
-            console.log('all projects', allProjects)
         }
     );
 }
