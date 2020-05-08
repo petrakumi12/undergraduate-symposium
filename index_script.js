@@ -2,12 +2,7 @@ let dept_arr = [];
 let small_screen = 700;
 
 window.onload = function () {
-    // let body_html = document.body.innerHTML;
-    // document.body.innerHTML = "";
     dept_arr = [... Object.keys(id_sheet_dict)];
-    //check if we're on mobile
-    // console.log('mobile?', is_mobile());
-    // console.log('window width', window.innerWidth);
     //load header
     load_header(true, false);
     //load title
