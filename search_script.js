@@ -12,8 +12,8 @@ var indexOnAuthorCheckbox, indexOnTitleCheckbox, indexOnAdvisorsCheckbox, indexO
 
 window.onload = function () {
     update_globals();
-    loadFromCsv().then(() => {
-        // download(allProjects, 'all_data.csv', 'type: ".csv"');
+    loadResults().then(() => {
+        download(allProjects, 'all_data.csv', 'type: ".csv"');
         updateProjectCount(allProjects.length);
         let loadingProgressBar = document.getElementById('loadingProgressBar');
         hideElement(loadingProgressBar);
