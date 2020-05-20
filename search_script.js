@@ -12,7 +12,7 @@ var indexOnAuthorCheckbox, indexOnTitleCheckbox, indexOnAdvisorsCheckbox, indexO
 
 window.onload = function () {
     update_globals();
-   //  loadFromCsvs().then(() => {
+   //loadFromCsv().then(() => {
     loadResults().then(() => {
       download(allProjects, 'all_data.csv', 'type: ".csv"');
         updateProjectCount(allProjects.length);
