@@ -232,7 +232,9 @@ function load_project_entry(datum, container, in_search) {
         col_3.style.height = '25em';
     }
 
-
+    let a = document.createElement('a');
+    a.setAttribute('name',datum['Presentation Number']);
+    new_row.appendChild(a);
     new_row.appendChild(col_1);
     new_row.appendChild(col_2);
     new_row.appendChild(col_3);
