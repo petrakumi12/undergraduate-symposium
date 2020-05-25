@@ -38,8 +38,13 @@ let id_sheet_dict = {
 let temp_video = '<div style="position: relative; padding-bottom: 56.25%; padding-top: 0px; height: 0; overflow: auto; -webkit-overflow-scrolling: touch;"><iframe id="ensembleEmbeddedContent_a_OxzZc3K0qtTJRKjRjabQ" src="https://video.wpi.edu/hapi/v1/contents/cdb1f36b-3797-4a2b-ad4c-944a8d18da6d/plugin?embedAsThumbnail=false&displayTitle=false&startTime=0&autoPlay=false&hideControls=true&showCaptions=false&displaySharing=false&displayAnnotations=false&displayAttachments=false&displayLinks=false&displayEmbedCode=false&displayDownloadIcon=false&displayMetaData=false&displayCredits=false&audioPreviewImage=false&displayCaptionSearch=false&displayViewersReport=false&displayAxdxs=false" title="Test Video" frameborder="0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" scrolling="no" allowfullscreen></iframe></div>'
 let temp_slides = '<iframe src="https://onedrive.live.com/embed?cid=79B772C1E1351D3E&amp;resid=79B772C1E1351D3E%21130&amp;authkey=AHGdc_WwEorlx0o&amp;em=2&amp;wdAr=1.7777777777777777" width="350px" height="221px" frameborder="0">This is an embedded <a target="_blank" href="https://office.com">Microsoft Office</a> presentation, powered by <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>';
 
+/**
+ * Loads header of site - that is, the top part of the page which remains the same in each page
+ * @param is_firstpage boolean showing whether the function is being called from the first page (the one with the department tiles)
+ * @param add_sorting boolean showing whether or not the sorting functionality needs to be added
+ */
+function load_header(is_firstpage, add_sorting) {
 
-function load_header(first_page, add_sorting) {
     let header_div = document.createElement('div');
     "row no-gutters d-flex flex-row mx-4 my-4 d-flex align-items-center justify-content-center".split(" ").map(e => header_div.classList.add(e));
 
@@ -60,7 +65,7 @@ function load_header(first_page, add_sorting) {
 
     h2.addEventListener('mouseover', d => h2.style.color = "#ac2b37");
     h2.addEventListener('mouseout', d => h2.style.color = "#000000");
-    if (!first_page) {
+    if (!is_firstpage) {
         img_col.style.height = '3.5em';
         img.setAttribute('src', '../wpi logo color - cropped.png');
         // img_col.style.marginLeft = '-5em';
@@ -83,19 +88,27 @@ function load_header(first_page, add_sorting) {
     }
 }
 
-function load_title(title) {
+/**
+ * Load title element in page of given department, i.e. in mathematical sciences, load the title "Mathematical Sciences"
+ * @param dept the department whose title needs to be loaded
+ */
+function load_title(dept) {
     let title_div = document.createElement('div');
     "row align-items-center justify-content-center no-gutters mt-3 mb-3 mx-3 text-center title-row".split(" ").map(e => title_div.classList.add(e));
 
     let title_h3 = document.createElement('h3');
     title_h3.classList.add('text-center');
-    title_h3.innerText = title;
+    title_h3.innerText = dept;
 
     title_div.appendChild(title_h3);
     document.getElementsByTagName('body')[0].appendChild(title_div);
 }
 
-
+/**
+ * Load the search button that leads to search_script.js
+ * @param is_firstpage boolean showing whether or not the button will be loaded in the first page,
+ * i.e. the one with the tiles
+ */
 function add_search_button(is_firstpage) {
     let btn_col = document.createElement('div');
     "row no-gutters align-items-center justify-content-around my-3".split(" ").map(d => btn_col.classList.add(d));
@@ -137,6 +150,9 @@ function add_search_button(is_firstpage) {
     document.getElementsByTagName('body')[0].appendChild(btn_col);
 }
 
+/**
+ * Adds footer of all pages, containing information about wpi and the creators of the site
+ */
 function load_footer() {
     let footer = document.createElement('footer');
     footer.setAttribute('id', 'footer');
@@ -166,8 +182,14 @@ function load_footer() {
     document.getElementsByTagName('body')[0].appendChild(footer)
 }
 
-
+/**
+ * loads a project in the current page
+ * @param datum a specific data element that was received from the Google Sheet or csv
+ * @param container the element that will contain the information from the datum
+ * @param in_search whether this element is loaded within the search page
+ */
 function load_project_entry(datum, container, in_search) {
+
     datum.Video === 'TBA' || datum.Video === 'TBD' ? datum.Video = temp_video : datum.Video = datum.Video
     datum.Slides === 'TBA' || datum.Slides === 'TBD' ? datum.Slides = temp_slides : datum.Slides = datum.Slides
 
@@ -251,6 +273,10 @@ function load_project_entry(datum, container, in_search) {
 
 }
 
+/**
+ * Loads element that sorts all visible projects. Currently not used in the page.
+ * @param header_div the element of the header where the sorting element will be added
+ */
 function add_sorting_elements(header_div) {
     let sort_col = document.createElement('div');
     sort_col.classList.add('col');
@@ -290,7 +316,11 @@ function add_sorting_elements(header_div) {
     header_div.appendChild(sort_col)
 }
 
-
+/**
+ * Toggles between showing and hiding text of the cards in the main page of the site.
+ * Used when a message from the associate dean button is pressed and when its repsective modal is hidden.
+ * @param show boolean on whether the card text should be shown or hidden
+ */
 function showhide_card_text(show) {
     let card_texts = document.getElementsByClassName('centered');
     for (let a_text of card_texts) {
@@ -302,7 +332,9 @@ function showhide_card_text(show) {
     }
 }
 
-
+/**
+ * Checks if the site is loaded on mobile
+ */
 function is_mobile() {
     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 }

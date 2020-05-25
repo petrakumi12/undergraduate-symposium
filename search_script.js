@@ -126,7 +126,9 @@ var searchProjects = function () {
     updateProjectCountAndTable();
 };
 
-
+/**
+ * Updates the values of all global variables
+ */
 function update_globals() {
 
     //Modal
@@ -207,6 +209,10 @@ async function loadResults() {
     }
 }
 
+/**
+ * Load all project submissions for each department from the local csv files
+ * @returns {Promise<void>}
+ */
 async function loadFromCsv() {
     await d3.csv('csvs/all_data.csv').then(d => {
             allProjects = allProjects.concat(d);
@@ -214,7 +220,12 @@ async function loadFromCsv() {
     );
 }
 
-
+/**
+ * Download a .csv file with aggregated information from all .csv files
+ * @param content
+ * @param filename
+ * @param type
+ */
 function download(content, filename, type) {
     const items = content;
     const replacer = (key, value) => value === null ? '' : value; // specify how you want to handle null values here
@@ -231,4 +242,3 @@ function download(content, filename, type) {
     a.click()
 }
 
-//"<div style='position: relative; padding-bottom: 56.25%; padding-top: 0px; height: 0; overflow: auto; -webkit-overflow-scrolling: touch;'><iframe id='ensembleEmbeddedContent_hIK-4HG0LkCwZHXSvpWFug' src='https://video.wpi.edu/hapi/v1/contents/e0be8284-b471-402e-b064-75d2be9585ba/plugin?embedAsThumbnail=false&displayTitle=false&startTime=0&autoPlay=false&hideControls=true&showCaptions=false&displaySharing=false&displayAnnotations=false&displayAttachments=false&displayLinks=false&displayEmbedCode=false&displayDownloadIcon=false&displayMetaData=false&displayCredits=false&audioPreviewImage=false&displayCaptionSearch=false&displayViewersReport=false&displayAxdxs=false' title='76-DeMaio' frameborder='0' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' scrolling='no' allowfullscreen></iframe></div>"

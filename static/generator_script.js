@@ -6,7 +6,6 @@ let to_no = 5;
 let from_csv = false;
 let download = false;
 
-
 window.onload = function () {
     //load header
     load_header(false, false);
@@ -34,6 +33,7 @@ window.onload = function () {
                                 load_page_number(-1);
                                 //load footer
                                 load_footer();
+                                go_to_anchor();
                             }
                         )
                     }
@@ -49,11 +49,20 @@ window.onload = function () {
                 load_page_number(-1);
                 //load footer
                 load_footer();
+                go_to_anchor();
             }
         )
     }
+
+
 };
 
+/**
+ * Loads to the given page all projects located between the positions in the
+ * first parameter to the second parameter in the data
+ * @param from_no the starting position in the data
+ * @param to_no the ending position in the data
+ */
 function load_projects(from_no, to_no) {
     let temp = document.createElement('div');
     temp.classList.add('mb-5');
@@ -68,6 +77,11 @@ function load_projects(from_no, to_no) {
     }
 }
 
+/**
+ * Loads number of current page, i.e. Page 1, 2, etc
+ * @type {number}
+ * @param no the number of the page to load
+ */
 function load_page_number(no) {
     let total_items = Object.values(data).length - 1;
     let total_pages = Math.ceil(total_items / els_per_page);
@@ -91,6 +105,9 @@ function load_page_number(no) {
         document.getElementById('next_btn').disabled = no === total_pages - 1;
     }
 
+    /**
+     * Creates and links all elements of the bottom section where users can switch between pages in a department
+     */
     function load_baseline() {
         if (no === -1) {
             no = 0
@@ -149,8 +166,11 @@ function load_page_number(no) {
     // let div_content = "<a href='load_page_number("+(no-1)+")'> < Previous </a>"
 }
 
+/**
+ * Sorts all the data based on type of sorting
+ * @param type the type of sorting to be done
+ */
 function sort_data(type) {
-
     switch (type.value) {
         case 'title':
             data = data.slice().sort((a, b) => d3.ascending(a.Title, b.Title));
@@ -176,5 +196,27 @@ function sort_data(type) {
             e.selected = true
         }
     }
+
+}
+
+
+function go_to_anchor(){
+    let cur_url = window.location;
+    let hash = cur_url.hash.replace("#", "");
+    let all_presentation_numbers = data.map(d => d['Presentation Number']);
+
+     function project_in_dept(){
+        return all_presentation_numbers.includes(hash);
+    }
+    function find_project_page(){
+        console.log('here', Math.ceil(all_presentation_numbers.indexOf(hash)/6));
+        return Math.ceil(all_presentation_numbers.indexOf(hash)/6);
+    }
+
+    if(project_in_dept()){
+        load_page_number(find_project_page() - 1);
+        document.location.href = "#"+hash;
+    }
+
 
 }

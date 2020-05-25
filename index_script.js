@@ -46,6 +46,10 @@ window.onload = function () {
     // document.getElementsByTagName('body')[0].innerHTML += body_html
 };
 
+
+/**
+ *  Adds div that will contain the grid of tiles that redirect to department pages
+ */
 function add_content_div() {
     let content_div = document.createElement('div');
     content_div.setAttribute('id', "append-grid");
@@ -56,8 +60,10 @@ function add_content_div() {
 
 }
 
+/**
+ * Loads grid of tiles that redirect to respective department pages
+ */
 function load_grid() {
-
     let container_tag = document.getElementById('append-grid');
     for (let i = 0; i < Math.ceil(dept_arr.length / 4); i++) {
         let row = document.createElement('div');
@@ -136,6 +142,12 @@ function load_grid() {
     load_footer();
 }
 
+/**
+ * Generates the name of a department page as a part of the url to append
+ * to the full url for redirecting to the given department page
+ * @param input the name of the department whose url needs to be generated
+ * @returns {string}
+ */
 function generate_page_name(input) {
     input = input.replace(/ /g, "-");
     input = input.replace(/'/g, "");
