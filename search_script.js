@@ -31,6 +31,9 @@ window.onload = function () {
 };
 
 
+/**
+ * builds the search index and reruns search
+ */
 var rebuildAndRerunSearch = function () {
     rebuildSearchIndex();
     searchProjects();
