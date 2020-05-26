@@ -199,7 +199,11 @@ function sort_data(type) {
 
 }
 
-
+/**
+ * Takes user to project defined by given anchor specified at the end of the url
+ * Does so by checking if anchor is valid within the specified department
+ * If yes then goes to respective page and to the given anchor
+ */
 function go_to_anchor(){
     let cur_url = window.location;
     let hash = cur_url.hash.replace("#", "");
@@ -209,10 +213,8 @@ function go_to_anchor(){
         return all_presentation_numbers.includes(hash);
     }
     function find_project_page(){
-        console.log('here', Math.ceil(all_presentation_numbers.indexOf(hash)/6));
         return Math.ceil(all_presentation_numbers.indexOf(hash)/6);
     }
-
     if(project_in_dept()){
         load_page_number(find_project_page() - 1);
         document.location.href = "#"+hash;
