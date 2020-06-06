@@ -3,8 +3,8 @@ let data = "";
 let els_per_page = 6;
 let from_no = 0;
 let to_no = 5;
-let from_csv = false;
-let download = false;
+let from_csv = true;
+let download = true;
 
 window.onload = function () {
     //load header
@@ -207,16 +207,21 @@ function sort_data(type) {
 function go_to_anchor(){
     let cur_url = window.location;
     let hash = cur_url.hash.replace("#", "");
+    console.log('hash is', hash);
+
     let all_presentation_numbers = data.map(d => d['Presentation Number']);
+    console.log('all presentations', all_presentation_numbers)
 
      function project_in_dept(){
+         console.log('all presentations include hash?', all_presentation_numbers.includes(hash));
         return all_presentation_numbers.includes(hash);
     }
     function find_project_page(){
-        return Math.ceil(all_presentation_numbers.indexOf(hash)/6);
+         console.log('project page is', Math.floor(all_presentation_numbers.indexOf(hash)/6));
+        return Math.floor(all_presentation_numbers.indexOf(hash)/6);
     }
     if(project_in_dept()){
-        load_page_number(find_project_page() - 1);
+        load_page_number(find_project_page());
         document.location.href = "#"+hash;
     }
 
