@@ -1,4 +1,5 @@
 let id_sheet_dict = {
+    'Summer Research': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTEGtQ35VZ2jp6Qw4pga9X9BKs9q0F7o4TvmPaySl0qW6y-W_Vx27hdYt4buQhsJ-oXbXvk4M6YTKdN/pub?output=csv',
     'Actuarial Mathematics': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRhVZ3LoAeHWs9zEVL7Jx6v0u1TL1qXZa35dwCsUQoUWpwIabWR8hBywVInbuAzTd5mwv_wxgtdXkwZ/pub?output=csv',
     'Aerospace Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQhuvJF-g6QNE5O2VNxkhPr0X-ZfwSV6D9ZhUyXpilw0GKDEzS_3u7cfqsarT0eRXf9vzXA_hWdim4M/pub?output=csv',
     // 'Applied Physics',
@@ -30,8 +31,7 @@ let id_sheet_dict = {
     'Physics': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTanesTtG31pD-X08ZzfzT582Juapy3pvjD8s5xkHZBPI71VgJVSkjhmlNYXq1LDTXyawphoNCu3Yj4/pub?output=csv',
     'Professional Writing': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTGnAssxk58p5SE4xAoyhjU-rZeFV2rOreqqtWDvyGtEgQl-RC7jMPVJWRWVBz18m-8u3gnihBIBRXG/pub?output=csv',
     'Psychological Science': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjux6xw7DevO_uVafpszqbB_KrlqBorTDlbfRhKRL_stsBi7_QiKQwHKOcSVXEGgIWCL2U0-ScsaWW/pub?output=csv',
-    'Robotics Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJ4Y5ZsNUbvA0uUakMydf67w67VcO74JtGwqxGnpnnaIK4ObCEXOlIuNlNzqvexKEogwuojIloCJmL/pub?output=csv',
-    'Summer Research': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTEGtQ35VZ2jp6Qw4pga9X9BKs9q0F7o4TvmPaySl0qW6y-W_Vx27hdYt4buQhsJ-oXbXvk4M6YTKdN/pub?output=csv'
+    'Robotics Engineering': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJ4Y5ZsNUbvA0uUakMydf67w67VcO74JtGwqxGnpnnaIK4ObCEXOlIuNlNzqvexKEogwuojIloCJmL/pub?output=csv'
     // 'Society: '', Technology: '', and Policy': '',
     // 'Z Sample': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTF-eItKvpFsBhUK_3hM2ihYr3Yi34IgvxSAK_Pw6L8GGODkalJ5uFKidrDTLfC8uaZ5nNtI98Wb-tz/pub?output=csv'
 };
