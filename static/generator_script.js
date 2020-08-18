@@ -3,8 +3,7 @@ let data = "";
 let els_per_page = 6;
 let from_no = 0;
 let to_no = 5;
-let from_csv = true;
-let download = false;
+let download = true;
 
 window.onload = function () {
     //load header
@@ -13,32 +12,38 @@ window.onload = function () {
     load_title(document.title);
     //load content
     add_search_button(false);
-    if (!from_csv) {
+    if (download) {
         let data_source = id_sheet_dict[document.title];
-        fetch(data_source)
-            .then(response => response.blob())
-            .then(blob => {
-                    let a = document.createElement('a');
-                    a.href = window.URL.createObjectURL(blob);
-                    if (download) {
-                        a.download = document.title + '.csv';
-                        a.click()
-                    } else {
-                        d3.csv(a.href).then(d => {
-                                data = d;
-                                bodytag = document.getElementsByTagName('body')[0];
-                                //load projects from first no to last no on the page
-                                load_projects(from_no, to_no);
-                                //load section with page numbers
-                                load_page_number(-1);
-                                //load footer
-                                load_footer();
-                                go_to_anchor();
-                            }
-                        )
-                    }
-                }
-            );
+        let win = window.open(data_source, document.title);
+        if (!win) {
+            //Browser has blocked it
+            alert('Please allow popups for this website');
+        }
+
+        // fetch(data_source)
+        //     .then(response => response.blob())
+        //     .then(blob => {
+        //             let a = document.createElement('a');
+        //             a.href = window.URL.createObjectURL(blob);
+        //             if (download) {
+        //                 a.download = document.title + '.csv';
+        //                 a.click()
+        //             } else {
+        //                 d3.csv(a.href).then(d => {
+        //                         data = d;
+        //                         bodytag = document.getElementsByTagName('body')[0];
+        //                         //load projects from first no to last no on the page
+        //                         load_projects(from_no, to_no);
+        //                         //load section with page numbers
+        //                         load_page_number(-1);
+        //                         //load footer
+        //                         load_footer();
+        //                         go_to_anchor();
+        //                     }
+        //                 )
+        //             }
+        //         }
+        //     );
     } else {
         d3.csv('../csvs/' + document.title + '.csv').then(d => {
                 data = d;
@@ -204,7 +209,7 @@ function sort_data(type) {
  * Does so by checking if anchor is valid within the specified department
  * If yes then goes to respective page and to the given anchor
  */
-function go_to_anchor(){
+function go_to_anchor() {
     let cur_url = window.location;
     let hash = cur_url.hash.replace("#", "");
     console.log('hash is', hash);
@@ -212,17 +217,19 @@ function go_to_anchor(){
     let all_presentation_numbers = data.map(d => d['Presentation Number']);
     console.log('all presentations', all_presentation_numbers)
 
-     function project_in_dept(){
-         console.log('all presentations include hash?', all_presentation_numbers.includes(hash));
+    function project_in_dept() {
+        console.log('all presentations include hash?', all_presentation_numbers.includes(hash));
         return all_presentation_numbers.includes(hash);
     }
-    function find_project_page(){
-         console.log('project page is', Math.floor(all_presentation_numbers.indexOf(hash)/6));
-        return Math.floor(all_presentation_numbers.indexOf(hash)/6);
+
+    function find_project_page() {
+        console.log('project page is', Math.floor(all_presentation_numbers.indexOf(hash) / 6));
+        return Math.floor(all_presentation_numbers.indexOf(hash) / 6);
     }
-    if(project_in_dept()){
+
+    if (project_in_dept()) {
         load_page_number(find_project_page());
-        document.location.href = "#"+hash;
+        document.location.href = "#" + hash;
     }
 
 
