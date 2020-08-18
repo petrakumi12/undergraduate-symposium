@@ -55,7 +55,7 @@ function load_header(is_firstpage, add_sorting) {
     img_col.style.cursor = 'pointer';
 
     let img = document.createElement('img');
-    img.setAttribute('src', 'wpi logo color - cropped.png');
+    img.setAttribute('src', 'imgs/wpi logo color - cropped.png');
     img.style.height = '100%';
 
     let col = document.createElement('div');
@@ -68,7 +68,7 @@ function load_header(is_firstpage, add_sorting) {
     h2.addEventListener('mouseout', d => h2.style.color = "#000000");
     if (!is_firstpage) {
         img_col.style.height = '3.5em';
-        img.setAttribute('src', '../wpi logo color - cropped.png');
+        img.setAttribute('src', '../imgs/wpi logo color - cropped.png');
         // img_col.style.marginLeft = '-5em';
         // col.classList.add('col-12');
         h2.addEventListener('click', d => window.location.href = "../index.html");
