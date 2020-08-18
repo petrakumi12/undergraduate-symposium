@@ -18,8 +18,7 @@ def generate_all_data(parent_directory):
     add_data_to_csv(all_data)
 
     print("reading and writing complete. Size of all_data", len(all_data))
-    for i in range(5):
-        print(all_data[i])
+
 
 def get_encoding(a_file):
     # change encoding based on file - summer research 2020.csv was written in different encoding than others
@@ -31,7 +30,6 @@ def get_encoding(a_file):
 
 
 def read_one_file(a_file, encoding, all_data):
-
     # read file line by line
     with open(a_file, newline='', encoding=encoding) as f:
         reader = csv.reader(f, skipinitialspace=True)
@@ -40,7 +38,6 @@ def read_one_file(a_file, encoding, all_data):
         for row in reader:
             if row not in all_data:
                 all_data.append(row)
-
     return all_data
 
 
