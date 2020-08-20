@@ -13,13 +13,15 @@ def generate_all_data(parent_directory):
     """
     all_data = []
 
-    file_paths = [join(parent_directory, f) for f in listdir(parent_directory) if isfile(join(parent_directory, f)) and f!="all_data.csv"]
+    file_paths = [join(parent_directory, f) for f in listdir(parent_directory) if
+                  isfile(join(parent_directory, f)) and f != "all_data.csv"]
 
     for a_file in file_paths:
         print("reading file:", a_file)
         encoding = get_encoding(a_file)
         all_data = read_one_file(a_file, encoding, all_data)
 
+    print(len(all_data))
     add_data_to_csv(all_data)
 
     print("reading and writing complete. Size of all_data", len(all_data))
@@ -53,8 +55,8 @@ def read_one_file(a_file, encoding, all_data):
         # skip first row as it's headers
         next(reader)
         for row in reader:
-            if row not in all_data: # check uniqueness of entry
-                all_data.append(row)
+            # if row not in all_data: # check uniqueness of entry
+            all_data.append(row)
     return all_data
 
 
@@ -66,10 +68,11 @@ def add_data_to_csv(all_data):
     """
     with open(join(parent_directory, "all_data.csv"), "w", newline='', encoding="utf8") as final_csv:
         writer = csv.writer(final_csv, quoting=csv.QUOTE_MINIMAL)
-        writer.writerow(["Submission","Presentation Number","Contact Email","Corresponding Author","Students","Advisors","Major","Title","Video","Abstract","Slides"])
+        writer.writerow(
+            ["Submission", "Presentation Number", "Contact Email", "Corresponding Author", "Students", "Advisors",
+             "Major", "Title", "Video", "Abstract", "Slides"])
         for row in all_data:
             writer.writerow(row)
 
 
 generate_all_data(parent_directory)
-
