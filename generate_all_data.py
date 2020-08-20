@@ -55,8 +55,8 @@ def read_one_file(a_file, encoding, all_data):
         # skip first row as it's headers
         next(reader)
         for row in reader:
-            if row not in all_data: # check uniqueness of entry
-                all_data.append(row)
+            #  if row not in all_data: # check uniqueness of entry
+            all_data.append(row)
     return all_data
 
 
