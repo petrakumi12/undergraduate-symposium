@@ -75,7 +75,8 @@ var updateProjectTable = function (projects) {
     indexedProjectsTBody.innerHTML = '';
 
     var tokens = search.tokenizer.tokenize(searchInput.value);
-
+    // console.log('tokens', tokens);
+    // console.log('projects', projects);
     for (var i = 0, length = projects.length; i < length; i++) {
         const project = projects[i];
 
