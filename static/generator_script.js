@@ -149,7 +149,7 @@ function load_page_number(no) {
         center_col.classList.add('d-flex');
         center_col.classList.add('align-items-center');
         center_col.classList.add('justify-content-center');
-        center_col.innerHTML = "<p class='m-0 text-center pageno-text' > Page <span class='pageno-span'>" + (no + 1) + "</span> of <span class='pageno-span'>" + total_pages + "</span><br/>Displaying <span class='pageno-span'>" + (start + 1) + " - " + (end + 1) + "</span> of <span class='pageno-span'>" + total_items + "</span> projects in this major</p>";
+        center_col.innerHTML = "<p class='m-0 text-center pageno-text' > Page <span class='pageno-span'>" + (no + 1) + "</span> of <span class='pageno-span'>" + total_pages + "</span><br/>Displaying <span class='pageno-span'>" + (start + 1) + " - " + (end + 1) + "</span> of <span class='pageno-span'>" + total_items + "</span> projects in this gallery</p>";
 
         let next_col = document.createElement('div');
         next_col.classList.add('col');
