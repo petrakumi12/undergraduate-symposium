@@ -61,7 +61,7 @@ function load_header(is_firstpage, add_sorting) {
     let col = document.createElement('div');
 
     let h2 = document.createElement('h2');
-    h2.innerText = "Virtual Undergraduate Research Showcase 2020";
+    h2.innerText = "Virtual Undergraduate Research Showcase";
     "d-flex align-items-center justify-content-center mb-0 ml-4 text-center".split(" ").map(e => h2.classList.add(e));
 
     h2.addEventListener('mouseover', d => h2.style.color = "#ac2b37");
